@@ -19,6 +19,10 @@
 
 #include <linux/fb.h>
 
+#if BYTE_ORDER != LITTLE_ENDIAN
+#error Only little-endian machines are supported
+#endif
+
 #define DEFAULT_FBDEV "/dev/fb0"
 
 static void posix_error(const char *s, ...)
