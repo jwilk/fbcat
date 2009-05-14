@@ -135,6 +135,9 @@ int main(int argc, const char **argv)
   if (ioctl(fd, FBIOGET_VSCREENINFO, &var_info))
     posix_error("FBIOGET_VSCREENINFO failed");
 
+  if (var_info.red.length > 8 || var_info.green.length > 8 || var_info.blue.length > 8)
+    not_supported("color depth > 8 bits per component");
+
   switch (fix_info.visual)
   {
     uint16_t i, j;
