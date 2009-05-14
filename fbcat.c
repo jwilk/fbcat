@@ -68,7 +68,8 @@ static void dump_truecolor(const unsigned char *video_memory, const struct fb_va
       row[x * 3 + 1] = get_color(pixel, &info->green);
       row[x * 3 + 2] = get_color(pixel, &info->blue);
     }
-    fwrite(row, 1, info->xres * 3, fp);
+    if (fwrite(row, 1, info->xres * 3, fp) != info->xres * 3)
+      posix_error("Write error");
   }
 
   free(row);
