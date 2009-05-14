@@ -6,6 +6,7 @@
  */
 #include <fcntl.h>
 #include <stdarg.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/ioctl.h>
@@ -77,7 +78,15 @@ int main(int argc, const char **argv)
   const char *fbdev_name;
   int fd;
 
-  if (argc > 2 || isatty(STDOUT_FILENO) == 1)
+  bool show_usage = false;
+  if (isatty(STDOUT_FILENO))
+  {
+    fprintf(stderr, "I won't write binary data to a terminal.\n");
+    show_usage = true;
+  }
+  if (argc > 2)
+    show_usage = true;
+  if (show_usage)
   {
     fprintf(stderr, "Usage: %s [fbdev]\n", argv[0]);
     return 1;
