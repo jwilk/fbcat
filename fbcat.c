@@ -38,6 +38,10 @@ void dump_truecolor(const unsigned char *video_memory, const struct fb_var_scree
 {
   unsigned int x, y;
   const size_t bytes_per_pixel = (info->bits_per_pixel + 7) / 8;
+  unsigned char *row = malloc(info->xres * 3);
+  if (row == NULL)
+    posix_error("malloc failed");
+
   fprintf(fp, "P6 %u %u 255\n", (unsigned int) info->xres, (unsigned int) info->yres); 
   for (y = 0; y < info->yres; y++)
   {
@@ -52,9 +56,14 @@ void dump_truecolor(const unsigned char *video_memory, const struct fb_var_scree
         pixel |= current[0] << (i * 8);
         current++;
       }
-      fprintf(fp, "%c%c%c", get_color(pixel, &info->red), get_color(pixel, &info->green), get_color(pixel, &info->blue));
+      row[x * 3 + 0] = get_color(pixel, &info->red);
+      row[x * 3 + 1] = get_color(pixel, &info->green);
+      row[x * 3 + 2] = get_color(pixel, &info->blue);
     }
+    fwrite(row, sizeof(unsigned char), info->xres * 3, fp);
   }
+
+  free(row);
 }
 
 int main(int argc, const char **argv)
