@@ -65,10 +65,23 @@ static void dump_video_memory(
     {
       unsigned int i;
       unsigned int pixel = 0;
-      for (i = 0; i < bytes_per_pixel; i++)
+      switch (bytes_per_pixel)
       {
-        pixel |= current[0] << (i * 8);
-        current++;
+        case 4:
+          pixel = *((uint32_t *) current);
+          current += 4;
+          break;
+        case 2:
+          pixel = *((uint16_t *) current);
+          current += 2;
+          break;
+        default:
+          for (i = 0; i < bytes_per_pixel; i++)
+          {
+            pixel |= current[0] << (i * 8);
+            current++;
+          }
+          break;
       }
       row[x * 3 + 0] = get_color(pixel, &info->red, colormap->red);
       row[x * 3 + 1] = get_color(pixel, &info->green, colormap->green);
