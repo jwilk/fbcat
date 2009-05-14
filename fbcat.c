@@ -129,11 +129,11 @@ int main(int argc, const char **argv)
   if (ioctl(fd, FBIOGET_FSCREENINFO, &fix_info))
     posix_error("FBIOGET_FSCREENINFO failed");
 
-  if (ioctl(fd, FBIOGET_VSCREENINFO, &var_info))
-    posix_error("FBIOGET_VSCREENINFO failed");
-
   if (fix_info.type != FB_TYPE_PACKED_PIXELS)
     not_supported("framebuffer type is not PACKED_PIXELS");
+
+  if (ioctl(fd, FBIOGET_VSCREENINFO, &var_info))
+    posix_error("FBIOGET_VSCREENINFO failed");
 
   switch (fix_info.visual)
   {
