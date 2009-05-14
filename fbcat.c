@@ -44,7 +44,7 @@ static void not_supported(const char *s)
 
 static inline unsigned char get_color(unsigned int pixel, const struct fb_bitfield *bitfield, uint16_t *colormap)
 {
-  return colormap[(pixel >> bitfield->offset) & ((1 << bitfield->length) - 1)];
+  return colormap[(pixel >> bitfield->offset) & ((1 << bitfield->length) - 1)] >> 8;
 }
 
 static void dump_video_memory(
@@ -157,13 +157,18 @@ int main(int argc, const char **argv)
 
   switch (fix_info.visual)
   {
-    uint16_t i, j;
     case FB_VISUAL_TRUECOLOR:
+    {
       /* initialize dummy colormap */
-      for (i = 0; i < 4; i++)
-        for (j = 0; j < 256; j++)
-          colormap_data[i][j] = j;
+      unsigned int i;
+      for (i = 0; i < (1 << var_info.red.length); i++)
+        colormap.red[i] = i * 0xffff / ((1 << var_info.red.length) - 1);
+      for (i = 0; i < (1 << var_info.green.length); i++)
+        colormap.green[i] = i * 0xffff / ((1 << var_info.green.length) - 1);
+      for (i = 0; i < (1 << var_info.blue.length); i++)
+        colormap.blue[i] = i * 0xffff / ((1 << var_info.blue.length) - 1);
       break;
+    }
     case FB_VISUAL_DIRECTCOLOR:
     case FB_VISUAL_PSEUDOCOLOR:
       if (ioctl(fd, FBIOGETCMAP, &colormap) != 0)
