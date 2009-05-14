@@ -8,6 +8,7 @@
 #include <fcntl.h>
 #include <stdarg.h>
 #include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/ioctl.h>
@@ -37,12 +38,17 @@ static void not_supported(const char *s)
   exit(3);
 }
 
-static inline unsigned char get_color(unsigned int pixel, const struct fb_bitfield *bitfield)
+static inline unsigned char get_color(unsigned int pixel, const struct fb_bitfield *bitfield, uint16_t *colormap)
 {
-  return (pixel >> bitfield->offset) & ((1 << bitfield->length) - 1);
+  return colormap[(pixel >> bitfield->offset) & ((1 << bitfield->length) - 1)];
 }
 
-static void dump_truecolor(const unsigned char *video_memory, const struct fb_var_screeninfo *info, FILE *fp)
+static void dump_video_memory(
+  const unsigned char *video_memory,
+  const struct fb_var_screeninfo *info,
+  const struct fb_cmap *colormap, 
+  FILE *fp
+)
 {
   unsigned int x, y;
   const size_t bytes_per_pixel = (info->bits_per_pixel + 7) / 8;
@@ -64,9 +70,9 @@ static void dump_truecolor(const unsigned char *video_memory, const struct fb_va
         pixel |= current[0] << (i * 8);
         current++;
       }
-      row[x * 3 + 0] = get_color(pixel, &info->red);
-      row[x * 3 + 1] = get_color(pixel, &info->green);
-      row[x * 3 + 2] = get_color(pixel, &info->blue);
+      row[x * 3 + 0] = get_color(pixel, &info->red, colormap->red);
+      row[x * 3 + 1] = get_color(pixel, &info->green, colormap->green);
+      row[x * 3 + 2] = get_color(pixel, &info->blue, colormap->blue);
     }
     if (fwrite(row, 1, info->xres * 3, fp) != info->xres * 3)
       posix_error("Write error");
@@ -109,6 +115,16 @@ int main(int argc, const char **argv)
 
   struct fb_fix_screeninfo fix_info;
   struct fb_var_screeninfo var_info;
+  uint16_t colormap_data[4][1 << 8];
+  struct fb_cmap colormap =
+  {
+    0,
+    1 << 8,
+    colormap_data[0],
+    colormap_data[1],
+    colormap_data[2],
+    colormap_data[3],
+  };
 
   if (ioctl(fd, FBIOGET_FSCREENINFO, &fix_info))
     posix_error("FBIOGET_FSCREENINFO failed");
@@ -119,6 +135,9 @@ int main(int argc, const char **argv)
   if (fix_info.type != FB_TYPE_PACKED_PIXELS)
     not_supported("framebuffer type is not PACKED_PIXELS");
 
+  if (ioctl(fd, FBIOGETCMAP, &colormap) != 0)
+    posix_error("FBIOGETCMAP failed");
+
   const size_t bytes_per_pixel = (var_info.bits_per_pixel + 7) / 8;
   const size_t mapped_length = var_info.xres_virtual * (var_info.yres + var_info.yoffset) * bytes_per_pixel;
   const unsigned char *video_memory;
@@ -127,7 +146,9 @@ int main(int argc, const char **argv)
   switch (fix_info.visual)
   {
     case FB_VISUAL_TRUECOLOR:
-      dump_truecolor(video_memory, &var_info, stdout);
+    case FB_VISUAL_DIRECTCOLOR:
+    case FB_VISUAL_PSEUDOCOLOR:
+      dump_video_memory(video_memory, &var_info, &colormap, stdout);
       break;
     default:
       not_supported("unsupported visual");
