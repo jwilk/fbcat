@@ -135,8 +135,6 @@ int main(int argc, const char **argv)
   if (fix_info.type != FB_TYPE_PACKED_PIXELS)
     not_supported("framebuffer type is not PACKED_PIXELS");
 
-  if (ioctl(fd, FBIOGETCMAP, &colormap) != 0)
-    posix_error("FBIOGETCMAP failed");
 
   const size_t bytes_per_pixel = (var_info.bits_per_pixel + 7) / 8;
   const size_t mapped_length = var_info.xres_virtual * (var_info.yres + var_info.yoffset) * bytes_per_pixel;
@@ -145,14 +143,22 @@ int main(int argc, const char **argv)
 
   switch (fix_info.visual)
   {
+    uint16_t i, j;
     case FB_VISUAL_TRUECOLOR:
+      /* initialize dummy colormap */
+      for (i = 0; i < 4; i++)
+        for (j = 0; j < 256; j++)
+          colormap_data[i][j] = j;
+      break;
     case FB_VISUAL_DIRECTCOLOR:
     case FB_VISUAL_PSEUDOCOLOR:
-      dump_video_memory(video_memory, &var_info, &colormap, stdout);
+      if (ioctl(fd, FBIOGETCMAP, &colormap) != 0)
+        posix_error("FBIOGETCMAP failed");
       break;
     default:
       not_supported("unsupported visual");
   }
+  dump_video_memory(video_memory, &var_info, &colormap, stdout);
 
   close(fd);
   return 0;
