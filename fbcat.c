@@ -20,7 +20,7 @@
 
 #define DEFAULT_FBDEV "/dev/fb0"
 
-void posix_error(const char *s, ...)
+static void posix_error(const char *s, ...)
 {
   va_list argv;
   va_start(argv, s);
@@ -31,18 +31,18 @@ void posix_error(const char *s, ...)
   exit(2);
 }
 
-void not_supported(const char *s)
+static void not_supported(const char *s)
 {
   fprintf(stderr, "Framebuffer device is not supported: %s\n", s);
   exit(3);
 }
 
-unsigned char get_color(unsigned int pixel, const struct fb_bitfield *bitfield)
+static inline unsigned char get_color(unsigned int pixel, const struct fb_bitfield *bitfield)
 {
   return (pixel >> bitfield->offset) & ((1 << bitfield->length) - 1);
 }
 
-void dump_truecolor(const unsigned char *video_memory, const struct fb_var_screeninfo *info, FILE *fp)
+static void dump_truecolor(const unsigned char *video_memory, const struct fb_var_screeninfo *info, FILE *fp)
 {
   unsigned int x, y;
   const size_t bytes_per_pixel = (info->bits_per_pixel + 7) / 8;
