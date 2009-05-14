@@ -135,12 +135,6 @@ int main(int argc, const char **argv)
   if (fix_info.type != FB_TYPE_PACKED_PIXELS)
     not_supported("framebuffer type is not PACKED_PIXELS");
 
-
-  const size_t bytes_per_pixel = (var_info.bits_per_pixel + 7) / 8;
-  const size_t mapped_length = var_info.xres_virtual * (var_info.yres + var_info.yoffset) * bytes_per_pixel;
-  const unsigned char *video_memory;
-  video_memory = mmap(NULL, mapped_length, PROT_READ, MAP_SHARED, fd, 0);
-
   switch (fix_info.visual)
   {
     uint16_t i, j;
@@ -158,6 +152,11 @@ int main(int argc, const char **argv)
     default:
       not_supported("unsupported visual");
   }
+
+  const size_t bytes_per_pixel = (var_info.bits_per_pixel + 7) / 8;
+  const size_t mapped_length = var_info.xres_virtual * (var_info.yres + var_info.yoffset) * bytes_per_pixel;
+  const unsigned char *video_memory = mmap(NULL, mapped_length, PROT_READ, MAP_SHARED, fd, 0);
+
   dump_video_memory(video_memory, &var_info, &colormap, stdout);
 
   close(fd);
