@@ -6,9 +6,9 @@
  */
 
 #include <fcntl.h>
+#include <inttypes.h>
 #include <stdarg.h>
 #include <stdbool.h>
-#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/ioctl.h>
@@ -57,7 +57,7 @@ static void dump_video_memory(
   if (row == NULL)
     posix_error("malloc failed");
 
-  fprintf(fp, "P6 %u %u 255\n", (unsigned int) info->xres, (unsigned int) info->yres); 
+  fprintf(fp, "P6 %" PRIu32 " %" PRIu32 " 255\n", info->xres, info->yres);
   for (y = 0; y < info->yres; y++)
   {
     const unsigned char *current;
