@@ -19,9 +19,6 @@
 
 #include <linux/fb.h>
 
-#if BYTE_ORDER != LITTLE_ENDIAN
-#error Only little-endian machines are supported
-#endif
 
 #define DEFAULT_FBDEV "/dev/fb0"
 
@@ -180,6 +177,10 @@ int main(int argc, const char **argv)
   }
 
   const size_t bytes_per_pixel = (var_info.bits_per_pixel + 7) / 8;
+#if BYTE_ORDER != LITTLE_ENDIAN
+  if (bytes_per_pixel > 1)
+    not_supported("> 8 bpp on a big-endian machine");
+#endif
   const size_t mapped_length = var_info.xres_virtual * (var_info.yres + var_info.yoffset) * bytes_per_pixel;
   unsigned char *video_memory = mmap(NULL, mapped_length, PROT_READ, MAP_SHARED, fd, 0);
   if (video_memory == MAP_FAILED)
