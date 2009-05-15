@@ -171,6 +171,7 @@ int main(int argc, const char **argv)
     }
     case FB_VISUAL_DIRECTCOLOR:
     case FB_VISUAL_PSEUDOCOLOR:
+    case FB_VISUAL_STATIC_PSEUDOCOLOR:
       if (ioctl(fd, FBIOGETCMAP, &colormap) != 0)
         posix_error("FBIOGETCMAP failed");
       break;
