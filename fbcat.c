@@ -176,6 +176,8 @@ int main(int argc, const char **argv)
       not_supported("unsupported visual");
   }
 
+  if (var_info.bits_per_pixel < 8)
+    not_supported("< 8 bpp");
   const size_t bytes_per_pixel = (var_info.bits_per_pixel + 7) / 8;
 #if BYTE_ORDER != LITTLE_ENDIAN
   if (bytes_per_pixel > 1)
