@@ -35,7 +35,10 @@ static void posix_error(const char *s, ...)
 
 static void not_supported(const char *s)
 {
-  fprintf(stderr, "Framebuffer device is not supported: %s\n", s);
+  fprintf(stderr,
+    "Framebuffer device is not supported: %s\n"
+    "Please file a bug at http://code.google.com/p/fbcat/issues/\n",
+    s);
   exit(3);
 }
 
