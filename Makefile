@@ -1,4 +1,4 @@
-CFLAGS = -O2 -g
+CFLAGS = -Wall -O2 -g
 
 C_FILES = $(wildcard *.c)
 O_FILES = $(C_FILES:.c=.o)
