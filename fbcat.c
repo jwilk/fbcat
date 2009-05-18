@@ -122,7 +122,7 @@ int main(int argc, const char **argv)
   else
   {
     fbdev_name = getenv("FRAMEBUFFER");
-    if (fbdev_name == NULL)
+    if (fbdev_name == NULL || fbdev_name[0] == '\0')
       fbdev_name = DEFAULT_FBDEV;
   }
 
