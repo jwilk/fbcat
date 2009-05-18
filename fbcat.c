@@ -71,12 +71,14 @@ static void dump_video_memory(
       unsigned int pixel = 0;
       switch (bytes_per_pixel)
       {
+        /* The following code assumes little-endian byte ordering in the frame
+         * buffer. */
         case 4:
-          pixel = *((uint32_t *) current);
+          pixel = le32toh(*((uint32_t *) current));
           current += 4;
           break;
         case 2:
-          pixel = *((uint16_t *) current);
+          pixel = le16toh(*((uint16_t *) current));
           current += 2;
           break;
         default:
@@ -182,10 +184,6 @@ int main(int argc, const char **argv)
   if (var_info.bits_per_pixel < 8)
     not_supported("< 8 bpp");
   const size_t bytes_per_pixel = (var_info.bits_per_pixel + 7) / 8;
-#if BYTE_ORDER != LITTLE_ENDIAN
-  if (bytes_per_pixel > 1)
-    not_supported("> 8 bpp on a big-endian machine");
-#endif
   const size_t mapped_length = var_info.xres_virtual * (var_info.yres + var_info.yoffset) * bytes_per_pixel;
   unsigned char *video_memory = mmap(NULL, mapped_length, PROT_READ, MAP_SHARED, fd, 0);
   if (video_memory == MAP_FAILED)
