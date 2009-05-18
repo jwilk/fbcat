@@ -1,3 +1,4 @@
 syntax: glob
 fbcat
 *.o
+doc/*.1
