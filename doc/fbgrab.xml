@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE refentry PUBLIC '-//OASIS//DTD DocBook XML V4.5//EN' 'http://www.docbook.org/xml/4.5/docbookx.dtd' 
+[
+	<!ENTITY p 'fbgrab'>
+	<!ENTITY version '0.1'>
+]>
+
+<refentry>
+
+<refentryinfo>
+	<title>&p; manual</title>
+	<productname>&p;</productname>
+	<copyright>
+		<year>2009</year>
+		<holder>Jakub Wilk</holder>
+	</copyright>
+</refentryinfo>
+
+<refmeta>
+	<refentrytitle>&p;</refentrytitle>
+	<manvolnum>1</manvolnum>
+	<refmiscinfo class='version'>&version;</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+	<refname>&p;</refname>
+	<refpurpose>takes a screenshot using the framebuffer device</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+	<cmdsynopsis>
+		<command>&p;</command>
+		<arg choice='opt' rep='repeat'><replaceable>option</replaceable></arg>
+		<arg choice='plain'><replaceable>png-file</replaceable></arg>
+	</cmdsynopsis>
+	<cmdsynopsis>
+		<command>&p;</command>
+		<arg choice='plain'><option>-?</option></arg>
+	</cmdsynopsis>
+</refsynopsisdiv>
+
+<refsection>
+	<title>Description</title>
+	<para>
+		<!-- TODO -->
+	</para>
+</refsection>
+
+<refsection>
+	<title>Options</title>
+	<para>
+		<command>&p;</command> accepts the following options:
+		<variablelist>
+			<varlistentry>
+				<term><option>-c <replaceable>N</replaceable></option></term>
+				<listitem>
+					<para>
+						Grab the <filename>/dev/ttyN</filename> virtual terminal.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-C <replaceable>N</replaceable></option></term>
+				<listitem>
+					<para>
+						Switch to the <filename>/dev/ttyN</filename> virtual terminal,
+						then wait a few seconds before grabbing it.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-d <replaceable>fb-device</replaceable></option></term>
+				<listitem>
+					<para>
+						Use the <replaceable>fb-device</replaceable> framebuffer device.
+					</para>
+					<para>
+						By default, the device name is taken from the <varname>FRAMEBUFFER</varname> environment
+						variable. If it is unset or empty, the default is <filename>/dev/fb0</filename>.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-i</option></term>
+				<listitem>
+					<para>Enable PNG interlacing.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-s <replaceable>N</replaceable></option></term>
+				<listitem>
+					<para>
+						Sleep <replaceable>N</replaceable> seconds before making the screenshot or switching virtual
+						terminals.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-?</option></term>
+				<listitem>
+					<para>
+						Display help and exit.
+					</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</para>
+</refsection>
+
+<refsection>
+	<title>Unsupported options</title>
+	<para>
+		The following options of Gunnar Monell's <command>&p;</command> are recognized but not supported:
+		<variablelist>
+			<varlistentry>
+				<term><option>-f <replaceable>fb-dump-file</replaceable></option></term>
+				<listitem>
+					<para></para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-b <replaceable>N</replaceable></option></term>
+				<listitem>
+					<para></para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-w <replaceable>N</replaceable></option></term>
+				<listitem>
+					<para></para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term><option>-h <replaceable>N</replaceable></option></term>
+				<listitem>
+					<para></para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</para>
+</refsection>
+
+<refsection>
+	<title>See also</title>
+	<para>
+		<citerefentry>
+			<refentrytitle>png</refentrytitle>
+			<manvolnum>5</manvolnum>
+		</citerefentry>,
+		<citerefentry>
+			<refentrytitle>fbcat</refentrytitle>
+			<manvolnum>1</manvolnum>
+		</citerefentry>
+	</para>
+</refsection>
+
+</refentry>
+
+<!-- vim:set ts=4 sw=4 tw=120: -->
