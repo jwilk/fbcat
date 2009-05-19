@@ -51,6 +51,7 @@ static void dump_video_memory(
   const unsigned char *video_memory,
   const struct fb_var_screeninfo *info,
   const struct fb_cmap *colormap, 
+  size_t line_length,
   FILE *fp
 )
 {
@@ -64,7 +65,7 @@ static void dump_video_memory(
   for (y = 0; y < info->yres; y++)
   {
     const unsigned char *current;
-    current = video_memory + (info->xoffset + info->xres_virtual * (y + info->yoffset)) * bytes_per_pixel;
+    current = video_memory + (y + info->yoffset) * line_length + info->xoffset * bytes_per_pixel;
     for (x = 0; x < info->xres; x++)
     {
       unsigned int i;
@@ -183,13 +184,12 @@ int main(int argc, const char **argv)
 
   if (var_info.bits_per_pixel < 8)
     not_supported("< 8 bpp");
-  const size_t bytes_per_pixel = (var_info.bits_per_pixel + 7) / 8;
-  const size_t mapped_length = var_info.xres_virtual * (var_info.yres + var_info.yoffset) * bytes_per_pixel;
+  const size_t mapped_length = fix_info.line_length * (var_info.yres + var_info.yoffset);
   unsigned char *video_memory = mmap(NULL, mapped_length, PROT_READ, MAP_SHARED, fd, 0);
   if (video_memory == MAP_FAILED)
     posix_error("mmap failed");
 
-  dump_video_memory(video_memory, &var_info, &colormap, stdout);
+  dump_video_memory(video_memory, &var_info, &colormap, fix_info.line_length, stdout);
 
   /* deliberately ignore errors */
   munmap(video_memory, mapped_length);
