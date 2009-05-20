@@ -42,7 +42,7 @@
 <refsection>
 	<title>Description</title>
 	<para>
-		&p; is a wrapper around fbcat which emulates the behaviour of Gunnar Monell's <command>&p;</command> utility.
+		<command>&p;</command> is a wrapper around <command>fbcat</command> which emulates the behaviour of Gunnar Monell's <command>&p;</command> utility.
 	</para>
 </refsection>
 

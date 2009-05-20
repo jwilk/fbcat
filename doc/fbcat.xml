@@ -38,7 +38,7 @@
 <refsection>
 	<title>Description</title>
 	<para>
-		fbcat takes a screenshot using the framebuffer device. The produced image is in PPM format.
+		<command>fbcat</command> takes a screenshot using the framebuffer device. The produced image is in PPM format.
 		Note that redirection of standard output to a file or another process is needed since fbcat will refuse to write
 		it's output directly to the terminal.
 	</para>
