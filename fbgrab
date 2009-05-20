@@ -30,7 +30,7 @@ not_supported_option()
 
 no_ppm2png()
 {
-  printf -- 'No PPM -> PNG conversion tool found.\nPlease install Netpbm or GraphicsMagick, or ImageMagick.\n'
+  printf -- 'No PPM -> PNG conversion tool found.\nPlease install Netpbm or GraphicsMagick, or ImageMagick.\n' >&2
   exit 4
 }
 
