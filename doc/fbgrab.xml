@@ -42,7 +42,7 @@
 <refsection>
 	<title>Description</title>
 	<para>
-		<!-- TODO -->
+		&p; is a wrapper around fbcat which emulates the behaviour of fbgrab utility.
 	</para>
 </refsection>
 
