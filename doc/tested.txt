@@ -62,3 +62,10 @@ Framebuffer configurations tested with `fbcat`
 :Type: PACKED PIXELS
 :Visual: PSEUDOCOLOR
 :RGBA: 8/0,8/0,8/0,0/0
+
+------------------------
+
+:Name: CL Picasso4
+:Type: PACKED PIXELS
+:Visual: PSEUDOCOLOR
+:RGBA: 6/0,6/0,6/0,0/0
