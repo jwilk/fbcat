@@ -19,6 +19,13 @@
 
 #include <linux/fb.h>
 
+#if BYTE_ORDER == LITTLE_ENDIAN
+#define le32toh(x) (x)
+#define le16toh(x) (x)
+#else
+#define le32toh(x) bswap32(x)
+#define le16toh(x) bswap16(x)
+#endif
 
 #define DEFAULT_FBDEV "/dev/fb0"
 
