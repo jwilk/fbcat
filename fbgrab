@@ -68,19 +68,19 @@ done
 
 [ $# -ne 1 ] && usage
 
-if `command -v pnmtopng >/dev/null 2>/dev/null`
+if command -v pnmtopng >/dev/null 2>/dev/null
 then
   ppm2png()
   {
     pnmtopng ${interlace:+-interlace} - > "$1"
   }
-elif `gm -version 2>/dev/null | grep -q -w GraphicsMagick`
+elif gm -version 2>/dev/null | grep -q -w GraphicsMagick
 then
   ppm2png()
   {
     gm convert ${interlace:+-interlace Line} PPM:- "PNG:$1"
   }
-elif `convert -version 2>/dev/null | grep -q -w ImageMagick`
+elif convert -version 2>/dev/null | grep -q -w ImageMagick
 then
   ppm2png()
   {
