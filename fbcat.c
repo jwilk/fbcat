@@ -19,12 +19,17 @@
 
 #include <linux/fb.h>
 
+#if !defined(le32toh) || !defined(le16toh)
+
 #if BYTE_ORDER == LITTLE_ENDIAN
 #define le32toh(x) (x)
 #define le16toh(x) (x)
 #else
-#define le32toh(x) bswap32(x)
-#define le16toh(x) bswap16(x)
+#include <byteswap.h>
+#define le32toh(x) bswap_32(x)
+#define le16toh(x) bswap_16(x)
+#endif
+
 #endif
 
 #define DEFAULT_FBDEV "/dev/fb0"
