@@ -62,7 +62,7 @@ static inline unsigned char get_color(unsigned int pixel, const struct fb_bitfie
 static void dump_video_memory(
   const unsigned char *video_memory,
   const struct fb_var_screeninfo *info,
-  const struct fb_cmap *colormap, 
+  const struct fb_cmap *colormap,
   size_t line_length,
   FILE *fp
 )
