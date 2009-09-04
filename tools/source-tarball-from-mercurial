@@ -1,0 +1,20 @@
+#!/bin/sh
+if [ $# -ne 1 ]
+then
+  printf '%s <version>\n' "$0" >&2
+  exit 1
+fi
+set -e -x
+pwd="$PWD"
+name=`sed -n -e '/^\([[:alnum:]-]\+\).*/ { s//\1/; p; q}' doc/changelog`
+version="$1"
+sourceroot=`mktemp -d -t "$name-source-XXXXXX"`
+export TAR_OPTIONS="--owner root --group root --mode a+rX"
+export GZIP=-9
+mkdir -p "$sourceroot/$name-$version"
+hg archive -r "$version" "$sourceroot/$name-$version"
+cd "$sourceroot"
+rm -Rf */.hg*
+rm -Rf */tools/
+tar -czf "$pwd/$name-$version.tar.gz" */
+rm -Rf "$sourceroot"
