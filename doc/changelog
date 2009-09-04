@@ -1,3 +1,10 @@
+fbcat (0.2) unstable; urgency=low
+
+  * fbcat: fix FTBFS for legacy libc systems.
+  * fbgrab: minor simplifications.
+
+ -- Piotr Lewandowski <piotr.lewandowski@gmail.com>  Fri, 04 Sep 2009 21:57:28 +0200
+
 fbcat (0.1) unstable; urgency=low
 
   * Initial release.
