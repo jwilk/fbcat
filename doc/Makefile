@@ -12,4 +12,8 @@ all: $(MAN_FILES)
 	$(XMLLINT) $(<)
 	$(XSLTPROC) $(XSL) $(<)
 
+.PHONY: clean
+clean:
+	rm -f $(MAN_FILES)
+
 # vim:ts=4
