@@ -37,6 +37,13 @@ Framebuffer configurations tested with `fbcat`
 
 ------------------------
 
+:Name: nouveaufb
+:Type: PACKED PIXELS
+:Visual: TRUECOLOR
+:RGBA: 8/16,8/8,8/0,0/0
+
+------------------------
+
 :Name: inteldrmfb
 :Type: PACKED PIXELS
 :Visual: TRUECOLOR
