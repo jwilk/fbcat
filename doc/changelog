@@ -1,8 +1,9 @@
 fbcat (0.3) UNRELEASED; urgency=low
 
   * fbgrab: use $() rather than backticks.
+  * fbgrab: run under ‘set -e’.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Tue, 11 Oct 2011 23:53:07 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Tue, 11 Oct 2011 23:55:01 +0200
 
 fbcat (0.2) unstable; urgency=low
 
