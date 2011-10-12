@@ -12,6 +12,7 @@
 	<productname>&p;</productname>
 	<copyright>
 		<year>2009</year>
+		<year>2011</year>
 		<holder>Jakub Wilk</holder>
 	</copyright>
 </refentryinfo>
@@ -57,6 +58,12 @@
 					<para>
 						Grab the <filename>/dev/ttyN</filename> virtual terminal.
 					</para>
+					<note>
+						<para>
+							This option might require root privileges (or <varname>CAP_SYS_TTY_CONFIG</varname>
+							capability).
+						</para>
+					</note>
 				</listitem>
 			</varlistentry>
 			<varlistentry>
@@ -66,6 +73,12 @@
 						Switch to the <filename>/dev/ttyN</filename> virtual terminal,
 						then wait a few seconds before grabbing it.
 					</para>
+					<note>
+						<para>
+							This option might require root privileges (or <varname>CAP_SYS_TTY_CONFIG</varname>
+							capability).
+						</para>
+					</note>
 				</listitem>
 			</varlistentry>
 			<varlistentry>
