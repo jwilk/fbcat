@@ -1,4 +1,4 @@
-fbcat (0.3) UNRELEASED; urgency=low
+fbcat (0.3) unstable; urgency=low
 
   * fbgrab: use $() rather than backticks.
   * fbgrab: run under ‘set -e’.
@@ -6,7 +6,7 @@ fbcat (0.3) UNRELEASED; urgency=low
     (or CAP_SYS_TTY_CONFIG capability).
   * Makefile: don't override CFLAGS set via environment.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Sun, 11 Mar 2012 22:24:15 +0100
+ -- Jakub Wilk <jwilk@jwilk.net>  Mon, 12 Mar 2012 16:29:31 +0100
 
 fbcat (0.2) unstable; urgency=low
 
