@@ -61,8 +61,9 @@ static inline unsigned char get_color(unsigned int pixel, const struct fb_bitfie
 
 static inline unsigned char reverse_bits(unsigned char b)
 {
-  // reverses the order of the bits in a byte
-  // from http://graphics.stanford.edu/~seander/bithacks.html#ReverseByteWith64BitsDiv
+  /* reverses the order of the bits in a byte
+   * from http://graphics.stanford.edu/~seander/bithacks.html#ReverseByteWith64BitsDiv
+   */
   return (b * 0x0202020202ULL & 0x010884422010ULL) % 1023;
 }
 
