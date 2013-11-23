@@ -1,4 +1,4 @@
-/* Copyright © 2009 Piotr Lewandowski, Jakub Wilk
+/* Copyright © 2009-2013 Piotr Lewandowski, Jakub Wilk, David Lechner
  *
  * This package is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,6 +57,45 @@ static void not_supported(const char *s)
 static inline unsigned char get_color(unsigned int pixel, const struct fb_bitfield *bitfield, uint16_t *colormap)
 {
   return colormap[(pixel >> bitfield->offset) & ((1 << bitfield->length) - 1)] >> 8;
+}
+
+static inline unsigned char reverse_bits(unsigned char b)
+{
+  // reverses the order of the bits in a byte
+  // from http://graphics.stanford.edu/~seander/bithacks.html#ReverseByteWith64BitsDiv
+  return (b * 0x0202020202ULL & 0x010884422010ULL) % 1023;
+}
+
+static void dump_video_memory_mono(
+  const unsigned char *video_memory,
+  const struct fb_var_screeninfo *info,
+  bool black_is_zero,
+  size_t line_length,
+  FILE *fp
+)
+{
+  unsigned int x, y;
+  int bytes_per_row = (info->xres + 7) / 8;
+  unsigned char *row = malloc(bytes_per_row);
+  if (row == NULL)
+    posix_error("malloc failed");
+
+  fprintf(fp, "P4 %" PRIu32 " %" PRIu32 "\n", info->xres, info->yres);
+  for (y = 0; y < info->yres; y++)
+  {
+    const unsigned char *current;
+    current = video_memory + (y + info->yoffset) * line_length + info->xoffset;
+    for (x = 0; x < bytes_per_row; x++)
+    {
+      row[x] = reverse_bits(*current++);
+      if (black_is_zero)
+        row[x] = ~row[x];
+    }
+    if (fwrite(row, 1, bytes_per_row, fp) != bytes_per_row)
+      posix_error("Write error");
+  }
+
+  free(row);
 }
 
 static void dump_video_memory(
@@ -148,6 +187,8 @@ int main(int argc, const char **argv)
   struct fb_fix_screeninfo fix_info;
   struct fb_var_screeninfo var_info;
   uint16_t colormap_data[4][1 << 8];
+  bool is_mono = false;
+  bool black_is_zero = false;
   struct fb_cmap colormap =
   {
     0,
@@ -190,18 +231,29 @@ int main(int argc, const char **argv)
       if (ioctl(fd, FBIOGETCMAP, &colormap) != 0)
         posix_error("FBIOGETCMAP failed");
       break;
+    case FB_VISUAL_MONO01:
+      is_mono = true;
+      break;
+    case FB_VISUAL_MONO10:
+      is_mono = true;
+      black_is_zero = true;
+      break;
     default:
       not_supported("unsupported visual");
   }
 
-  if (var_info.bits_per_pixel < 8)
+  if (var_info.bits_per_pixel < 8 && !is_mono)
     not_supported("< 8 bpp");
+  if (var_info.bits_per_pixel != 1 && is_mono)
+    not_supported("monochrome framebuffer is not 1 bbp");
   const size_t mapped_length = fix_info.line_length * (var_info.yres + var_info.yoffset);
   unsigned char *video_memory = mmap(NULL, mapped_length, PROT_READ, MAP_SHARED, fd, 0);
   if (video_memory == MAP_FAILED)
     posix_error("mmap failed");
-
-  dump_video_memory(video_memory, &var_info, &colormap, fix_info.line_length, stdout);
+  if (is_mono)
+    dump_video_memory_mono(video_memory, &var_info, black_is_zero, fix_info.line_length, stdout);
+  else
+    dump_video_memory(video_memory, &var_info, &colormap, fix_info.line_length, stdout);
 
   /* deliberately ignore errors */
   munmap(video_memory, mapped_length);
