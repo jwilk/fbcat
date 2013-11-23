@@ -93,7 +93,7 @@ static void dump_video_memory_mono(
         row[x] = ~row[x];
     }
     if (fwrite(row, 1, bytes_per_row, fp) != bytes_per_row)
-      posix_error("Write error");
+      posix_error("write error");
   }
 
   free(row);
@@ -147,7 +147,7 @@ static void dump_video_memory(
       row[x * 3 + 2] = get_color(pixel, &info->blue, colormap->blue);
     }
     if (fwrite(row, 1, info->xres * 3, fp) != info->xres * 3)
-      posix_error("Write error");
+      posix_error("write error");
   }
 
   free(row);
@@ -183,7 +183,7 @@ int main(int argc, const char **argv)
 
   fd = open(fbdev_name, O_RDONLY);
   if (fd == -1)
-    posix_error("Could not open %s", fbdev_name);
+    posix_error("could not open %s", fbdev_name);
 
   struct fb_fix_screeninfo fix_info;
   struct fb_var_screeninfo var_info;
