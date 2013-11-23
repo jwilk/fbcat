@@ -1,4 +1,6 @@
-/* Copyright © 2009-2013 Piotr Lewandowski, Jakub Wilk, David Lechner
+/* Copyright © 2009 Piotr Lewandowski
+ * Copyright © 2009, 2013 Jakub Wilk
+ * Copyright © 2013 David Lechner
  *
  * This package is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
