@@ -78,7 +78,7 @@ static void dump_video_memory_mono(
 )
 {
   unsigned int x, y;
-  int bytes_per_row = (info->xres + 7) / 8;
+  const size_t bytes_per_row = (info->xres + 7) / 8;
   unsigned char *row = malloc(bytes_per_row);
   if (row == NULL)
     posix_error("malloc failed");
