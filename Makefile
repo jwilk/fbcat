@@ -11,6 +11,6 @@ fbcat: $(o_files)
 
 .PHONY: clean
 clean:
-	$(RM) fbcat *.o
+	rm -f fbcat *.o
 
 # vim:ts=4 sw=4 noet
