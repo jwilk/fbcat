@@ -1,5 +1,5 @@
 XSL = http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl
-XSLTPROC = /usr/bin/xsltproc --nonet \
+XSLTPROC = xsltproc --nonet \
 	--param man.charmap.use.subset 0 \
 	--param man.copyright.section.enabled 0 \
 
