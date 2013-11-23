@@ -73,12 +73,12 @@ static void dump_video_memory_mono(
   const unsigned char *video_memory,
   const struct fb_var_screeninfo *info,
   bool black_is_zero,
-  size_t line_length,
+  unsigned int line_length,
   FILE *fp
 )
 {
   unsigned int x, y;
-  const size_t bytes_per_row = (info->xres + 7) / 8;
+  const unsigned int bytes_per_row = (info->xres + 7) / 8;
   unsigned char *row = malloc(bytes_per_row);
   if (row == NULL)
     posix_error("malloc failed");
@@ -105,12 +105,12 @@ static void dump_video_memory(
   const unsigned char *video_memory,
   const struct fb_var_screeninfo *info,
   const struct fb_cmap *colormap,
-  size_t line_length,
+  unsigned int line_length,
   FILE *fp
 )
 {
   unsigned int x, y;
-  const size_t bytes_per_pixel = (info->bits_per_pixel + 7) / 8;
+  const unsigned int bytes_per_pixel = (info->bits_per_pixel + 7) / 8;
   unsigned char *row = malloc(info->xres * 3);
   if (row == NULL)
     posix_error("malloc failed");
