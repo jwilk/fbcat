@@ -1,5 +1,7 @@
 XSL = http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl
-XSLTPROC = /usr/bin/xsltproc --nonet --param man.charmap.use.subset 0
+XSLTPROC = /usr/bin/xsltproc --nonet \
+	--param man.charmap.use.subset 0 \
+	--param man.copyright.section.enabled 0 \
 
 XML_FILES = $(wildcard *.xml)
 MAN_FILES = $(XML_FILES:.xml=.1)
