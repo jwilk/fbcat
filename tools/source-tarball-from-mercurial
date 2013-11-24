@@ -9,7 +9,7 @@ pwd="$PWD"
 name=`sed -n -e '/^\([[:alnum:]-]\+\).*/ { s//\1/; p; q}' doc/changelog`
 version="$1"
 sourceroot=`mktemp -d -t "$name-source-XXXXXX"`
-export TAR_OPTIONS="--owner root --group root --mode a+rX"
+export TAR_OPTIONS="--owner root --group root --mode a+rX --format ustar"
 export GZIP="-9 -n"
 mkdir -p "$sourceroot/$name-$version"
 hg archive -r "$version" "$sourceroot/$name-$version"
