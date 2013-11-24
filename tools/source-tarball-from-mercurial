@@ -6,9 +6,9 @@ then
 fi
 set -e -x
 pwd="$PWD"
-name=`sed -n -e '/^\([[:alnum:]-]\+\).*/ { s//\1/; p; q}' doc/changelog`
+name=$(sed -n -e '/^\([[:alnum:]-]\+\).*/ { s//\1/; p; q}' doc/changelog)
 version="$1"
-sourceroot=`mktemp -d -t "$name-source-XXXXXX"`
+sourceroot=$(mktemp -d -t "$name-source-XXXXXX")
 export TAR_OPTIONS="--owner root --group root --mode a+rX --format ustar"
 export GZIP="-9 -n"
 mkdir -p "$sourceroot/$name-$version"
