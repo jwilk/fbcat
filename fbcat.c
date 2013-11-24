@@ -7,6 +7,7 @@
  * the Free Software Foundation; version 2 dated June, 1991.
  */
 
+#include <assert.h>
 #include <fcntl.h>
 #include <inttypes.h>
 #include <stdarg.h>
@@ -82,6 +83,7 @@ static void dump_video_memory_mono(
   unsigned char *row = malloc(bytes_per_row);
   if (row == NULL)
     posix_error("malloc failed");
+  assert(row != NULL);
 
   fprintf(fp, "P4 %" PRIu32 " %" PRIu32 "\n", info->xres, info->yres);
   for (y = 0; y < info->yres; y++)
@@ -114,6 +116,7 @@ static void dump_video_memory(
   unsigned char *row = malloc(info->xres * 3);
   if (row == NULL)
     posix_error("malloc failed");
+  assert(row != NULL);
 
   fprintf(fp, "P6 %" PRIu32 " %" PRIu32 " 255\n", info->xres, info->yres);
   for (y = 0; y < info->yres; y++)
