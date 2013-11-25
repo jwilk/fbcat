@@ -1,10 +1,13 @@
-/* Copyright © 2009-2013 Piotr Lewandowski, Jakub Wilk, David Lechner
+/* Copyright © 2009 Piotr Lewandowski
+ * Copyright © 2009, 2013 Jakub Wilk
+ * Copyright © 2013 David Lechner
  *
  * This package is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; version 2 dated June, 1991.
  */
 
+#include <assert.h>
 #include <fcntl.h>
 #include <inttypes.h>
 #include <stdarg.h>
@@ -71,15 +74,16 @@ static void dump_video_memory_mono(
   const unsigned char *video_memory,
   const struct fb_var_screeninfo *info,
   bool black_is_zero,
-  size_t line_length,
+  unsigned int line_length,
   FILE *fp
 )
 {
   unsigned int x, y;
-  int bytes_per_row = (info->xres + 7) / 8;
+  const unsigned int bytes_per_row = (info->xres + 7) / 8;
   unsigned char *row = malloc(bytes_per_row);
   if (row == NULL)
     posix_error("malloc failed");
+  assert(row != NULL);
 
   fprintf(fp, "P4 %" PRIu32 " %" PRIu32 "\n", info->xres, info->yres);
   for (y = 0; y < info->yres; y++)
@@ -103,15 +107,16 @@ static void dump_video_memory(
   const unsigned char *video_memory,
   const struct fb_var_screeninfo *info,
   const struct fb_cmap *colormap,
-  size_t line_length,
+  unsigned int line_length,
   FILE *fp
 )
 {
   unsigned int x, y;
-  const size_t bytes_per_pixel = (info->bits_per_pixel + 7) / 8;
+  const unsigned int bytes_per_pixel = (info->bits_per_pixel + 7) / 8;
   unsigned char *row = malloc(info->xres * 3);
   if (row == NULL)
     posix_error("malloc failed");
+  assert(row != NULL);
 
   fprintf(fp, "P6 %" PRIu32 " %" PRIu32 " 255\n", info->xres, info->yres);
   for (y = 0; y < info->yres; y++)

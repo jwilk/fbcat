@@ -10,9 +10,15 @@
 <refentryinfo>
 	<title>&p; manual</title>
 	<productname>&p;</productname>
+	<!-- copyright information for THIS document: -->
+	<copyright>
+		<year>2009</year>
+		<holder>Piotr Lewandowski</holder>
+	</copyright>
 	<copyright>
 		<year>2009</year>
 		<year>2011</year>
+		<year>2013</year>
 		<holder>Jakub Wilk</holder>
 	</copyright>
 </refentryinfo>
