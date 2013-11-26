@@ -3,8 +3,11 @@ fbcat (0.4) UNRELEASED; urgency=low
   [ David Lechner ]
   * Add support for monochrome visuals.
     https://code.google.com/p/fbcat/issues/detail?id=2
-  
- -- Jakub Wilk <jwilk@jwilk.net>  Sat, 23 Nov 2013 18:46:17 +0100
+
+  [ Jakub Wilk ]
+  * Improve error handling.
+
+ -- Jakub Wilk <jwilk@jwilk.net>  Tue, 26 Nov 2013 09:48:18 +0100
 
 fbcat (0.3) unstable; urgency=low
 

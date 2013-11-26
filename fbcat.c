@@ -261,6 +261,9 @@ int main(int argc, const char **argv)
   else
     dump_video_memory(video_memory, &var_info, &colormap, fix_info.line_length, stdout);
 
+  if (fclose(stdout))
+    posix_error("write error");
+
   /* deliberately ignore errors */
   munmap(video_memory, mapped_length);
   close(fd);
