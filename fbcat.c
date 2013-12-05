@@ -66,6 +66,20 @@ static inline unsigned char reverse_bits(unsigned char b)
 {
   /* reverses the order of the bits in a byte
    * from http://graphics.stanford.edu/~seander/bithacks.html#ReverseByteWith64BitsDiv
+   *
+   * how it works:
+   *
+   *   w = 0bABCDEFGH
+   *   x = w * 0x0202020202
+   *     = 0bABCDEFGHABCDEFGHABCDEFGHABCDEFGHABCDEFGH0
+   *   y = x & 0x010884422010
+   *     = 0bABCDEFGHABCDEFGHABCDEFGHABCDEFGHABCDEFGH0
+   *     & 0b10000100010000100010000100010000000010000
+   *     = 0bA0000F000B0000G000C0000H000D00000000E0000
+   *     = (A << 40) + (B << 31) + (C << 22) + (D << 13) + (E << 4) + (F << 35) + (G << 26) + (H << 17)
+   *   z = y % 1023 =
+   *     = (A << 0) + (B << 1) + (C << 2) + (D << 3) + (E << 4) + (F << 5) + (G << 6) + (H << 7)
+   *     = 0bHGFEDCBA
    */
   return (b * 0x0202020202ULL & 0x010884422010ULL) % 1023;
 }
@@ -260,6 +274,9 @@ int main(int argc, const char **argv)
     dump_video_memory_mono(video_memory, &var_info, black_is_zero, fix_info.line_length, stdout);
   else
     dump_video_memory(video_memory, &var_info, &colormap, fix_info.line_length, stdout);
+
+  if (fclose(stdout))
+    posix_error("write error");
 
   /* deliberately ignore errors */
   munmap(video_memory, mapped_length);
