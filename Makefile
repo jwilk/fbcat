@@ -1,5 +1,5 @@
 CFLAGS ?= -g -O2
-CFLAGS += -Wall
+CFLAGS += -Wall -Wextra
 
 c_files = $(wildcard *.c)
 o_files = $(c_files:.c=.o)
