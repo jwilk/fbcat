@@ -103,11 +103,13 @@ static void dump_video_memory_mono(
     posix_error("malloc failed");
   assert(row != NULL);
 
+  if (info->xoffset % 8)
+    not_supported("xoffset not divisible by 8 in 1 bpp mode");
   fprintf(fp, "P4 %" PRIu32 " %" PRIu32 "\n", info->xres, info->yres);
   for (y = 0; y < info->yres; y++)
   {
     const unsigned char *current;
-    current = video_memory + (y + info->yoffset) * line_length + info->xoffset;
+    current = video_memory + (y + info->yoffset) * line_length + (info->xoffset / 8);
     for (x = 0; x < bytes_per_row; x++)
     {
       row[x] = reverse_bits(*current++);
