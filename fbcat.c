@@ -35,7 +35,7 @@
 
 #endif
 
-#define DEFAULT_FBDEV "/dev/fb0"
+static const char default_fbdev[] = "/dev/fb0";
 
 static const char bug_tracker_url[] = "https://code.google.com/p/fbcat/issues/";
 
@@ -204,7 +204,7 @@ int main(int argc, const char **argv)
   {
     fbdev_name = getenv("FRAMEBUFFER");
     if (fbdev_name == NULL || fbdev_name[0] == '\0')
-      fbdev_name = DEFAULT_FBDEV;
+      fbdev_name = default_fbdev;
   }
 
   fd = open(fbdev_name, O_RDONLY);
