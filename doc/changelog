@@ -1,4 +1,4 @@
-fbcat (0.4) UNRELEASED; urgency=low
+fbcat (0.4) unstable; urgency=low
 
   [ David Lechner ]
   * Add support for monochrome visuals.
@@ -7,7 +7,7 @@ fbcat (0.4) UNRELEASED; urgency=low
   [ Jakub Wilk ]
   * Improve error handling.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Fri, 30 May 2014 11:31:58 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Fri, 30 May 2014 11:42:14 +0200
 
 fbcat (0.3) unstable; urgency=low
 
