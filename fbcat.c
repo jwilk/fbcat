@@ -37,7 +37,7 @@
 
 #define DEFAULT_FBDEV "/dev/fb0"
 
-static const char * bug_tracker_url = "https://code.google.com/p/fbcat/issues/";
+static const char bug_tracker_url[] = "https://code.google.com/p/fbcat/issues/";
 
 static void posix_error(const char *s, ...)
 {
