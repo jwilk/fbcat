@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright © 2009, 2011 Jakub Wilk
+# Copyright © 2009, 2011, 2014 Jakub Wilk
 #
 # This package is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,13 +26,13 @@ EOF
 
 not_supported_option()
 {
-  printf -- '%s option is not supported\n' "$1" >&2
+  printf -- 'fbgrab: the %s option is not supported.\n' "$1" >&2
   exit 3
 }
 
 no_ppm2png()
 {
-  printf -- 'No PPM -> PNG conversion tool found.\nPlease install Netpbm or GraphicsMagick, or ImageMagick.\n' >&2
+  printf -- 'fbgrab: no PPM -> PNG conversion tool found.\nPlease install Netpbm or GraphicsMagick, or ImageMagick.\n' >&2
   exit 4
 }
 

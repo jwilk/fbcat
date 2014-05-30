@@ -1,5 +1,5 @@
 /* Copyright © 2009 Piotr Lewandowski
- * Copyright © 2009, 2013 Jakub Wilk
+ * Copyright © 2009, 2013, 2014 Jakub Wilk
  * Copyright © 2013 David Lechner
  *
  * This package is free software; you can redistribute it and/or modify
@@ -43,6 +43,7 @@ static void posix_error(const char *s, ...)
 {
   va_list argv;
   va_start(argv, s);
+  fprintf(stderr, "fbcat: ");
   vfprintf(stderr, s, argv);
   fprintf(stderr, ": ");
   perror(NULL);
@@ -186,7 +187,7 @@ int main(int argc, const char **argv)
   bool show_usage = false;
   if (isatty(STDOUT_FILENO))
   {
-    fprintf(stderr, "I won't write binary data to a terminal.\n");
+    fprintf(stderr, "fbcat: refusing to write binary data to a terminal\n");
     show_usage = true;
   }
   if (argc > 2)
