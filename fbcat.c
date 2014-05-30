@@ -37,6 +37,8 @@
 
 #define DEFAULT_FBDEV "/dev/fb0"
 
+static const char * bug_tracker_url = "https://code.google.com/p/fbcat/issues/";
+
 static void posix_error(const char *s, ...)
 {
   va_list argv;
@@ -51,9 +53,11 @@ static void posix_error(const char *s, ...)
 static void not_supported(const char *s)
 {
   fprintf(stderr,
-    "Framebuffer device is not supported: %s\n"
-    "Please file a bug at https://code.google.com/p/fbcat/issues/\n",
-    s);
+    "fbcat: not yet supported: %s\n"
+    "Please file a bug at <%s>.\n",
+    s,
+    bug_tracker_url
+  );
   exit(3);
 }
 
