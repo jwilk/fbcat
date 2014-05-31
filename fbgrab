@@ -47,7 +47,7 @@ grab_vt=''
 wait_after_switch=0
 wait_before_switch=0
 device=${FRAMEBUFFER:-/dev/fb0}
-opts=$(getopt -o 'b:c:C:d:f:h:is:w:?' -- "$@")
+opts=$(getopt -n fbgrab -o 'b:c:C:d:f:h:is:w:?' -- "$@")
 interlace=''
 eval set -- "$opts"
 while true

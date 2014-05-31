@@ -1,8 +1,8 @@
 fbcat (0.4.1) UNRELEASED; urgency=low
 
-  * 
+  * Improve error handling.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Fri, 30 May 2014 12:30:48 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Sat, 31 May 2014 07:42:11 +0200
 
 fbcat (0.4) unstable; urgency=low
 
