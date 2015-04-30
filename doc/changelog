@@ -1,14 +1,15 @@
 fbcat (0.4.1) UNRELEASED; urgency=low
 
   * Improve error handling.
+  * Update the bug tracker URLs.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Sat, 31 May 2014 07:42:11 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Fri, 01 May 2015 00:00:36 +0200
 
 fbcat (0.4) unstable; urgency=low
 
   [ David Lechner ]
   * Add support for monochrome visuals.
-    https://code.google.com/p/fbcat/issues/detail?id=2
+    https://bitbucket.org/jwilk/fbcat/issue/2
 
   [ Jakub Wilk ]
   * Improve error handling.
