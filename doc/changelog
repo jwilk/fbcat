@@ -1,10 +1,10 @@
-fbcat (0.4.1) UNRELEASED; urgency=low
+fbcat (0.4.1) unstable; urgency=low
 
   * Improve error handling.
   * Update the bug tracker URLs.
     http://google-opensource.blogspot.com/2015/03/farewell-to-google-code.html
 
- -- Jakub Wilk <jwilk@jwilk.net>  Fri, 01 May 2015 00:00:36 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Fri, 01 May 2015 20:12:52 +0200
 
 fbcat (0.4) unstable; urgency=low
 
