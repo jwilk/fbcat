@@ -2,9 +2,10 @@ language: c
 compiler:
 - clang
 - gcc
-before_install:
-- sudo apt-get update -qq
-- sudo apt-get install -y linux-libc-dev
+addons:
+  apt:
+    packages:
+    - linux-libc-dev
 script: make
 
 # vim:ts=2 sts=2 sw=2 et
