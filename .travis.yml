@@ -5,7 +5,10 @@ compiler:
 addons:
   apt:
     packages:
+    - libxml2-utils
     - linux-libc-dev
-script: make
+script:
+- make
+- xmllint --noout --valid doc/*.xml
 
 # vim:ts=2 sts=2 sw=2 et
