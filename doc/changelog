@@ -1,3 +1,11 @@
+fbcat (0.4.2) UNRELEASED; urgency=low
+
+  * Add concrete dates to the manual pages. This helps making the package
+    builds reproducible, and avoids goofy month/day/year format that Docbook
+    XSL uses by default.
+
+ -- Jakub Wilk <jwilk@jwilk.net>  Sat, 27 Jun 2015 21:52:30 +0200
+
 fbcat (0.4.1) unstable; urgency=low
 
   * Improve error handling.
