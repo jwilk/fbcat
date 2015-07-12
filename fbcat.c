@@ -291,4 +291,4 @@ int main(int argc, const char **argv)
   return 0;
 }
 
-/* vim:set ts=2 sw=2 et: */
+/* vim:set ts=2 sts=2 sw=2 et: */
