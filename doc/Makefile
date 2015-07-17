@@ -16,4 +16,4 @@ all: $(man_files)
 clean:
 	rm -f $(man_files)
 
-# vim:ts=4
+# vim:ts=4 sts=4 sw=4 noet
