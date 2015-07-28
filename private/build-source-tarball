@@ -22,7 +22,7 @@ hg archive -r "$version" "$sourceroot/$name-$version"
 cd "$sourceroot"/*
 rm .hg*
 rm .travis.yml
-rm -r private/
+rm private/build-source-tarball
 cd ..
 tar -czf "$pwd/$name-$version.tar.gz" */
 rm -r "$sourceroot"
