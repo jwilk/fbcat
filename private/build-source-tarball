@@ -19,7 +19,7 @@ fi
 set -e -x
 pwd="$PWD"
 revision="${1:-tip}"
-name=$(sed -n -e '/^\([[:alnum:]-]\+\).*/ { s//\1/; p; q}' doc/changelog)
+name=$(hg cat -r "$revision" doc/changelog | head -n1 | cut -d ' ' -f 1)
 date=$(hg log -r "$revision" --template='{date|isodate}' | head -c 10 | tr -d -)
 version=$(hg cat -r "$revision" doc/changelog | head -n1 | cut -d ' ' -f2 | tr -d '()')
 released=$(hg cat -r "$revision" doc/changelog | head -n1 | grep -v -w UNRELEASED || true)
