@@ -20,7 +20,7 @@ export TAR_OPTIONS='--owner root --group root --mode a+rX --format ustar'
 export GZIP='-9 -n'
 hg archive -r "$version" "$sourceroot/$name-$version"
 cd "$sourceroot"
-rm -Rf */.hg*
-rm -Rf */private/
+rm */.hg*
+rm -r */private/
 tar -czf "$pwd/$name-$version.tar.gz" */
-rm -Rf "$sourceroot"
+rm -r "$sourceroot"
