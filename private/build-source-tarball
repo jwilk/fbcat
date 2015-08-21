@@ -18,7 +18,7 @@ then
 fi
 set -e
 pwd="$PWD"
-revision="${1:-tip}"
+revision=${1:-.}
 name=$(hg cat -r "$revision" doc/changelog | head -n1 | cut -d ' ' -f 1)
 date=$(hg log -r "$revision" --template='{date|isodate}' | head -c 10 | tr -d -)
 version=$(hg cat -r "$revision" doc/changelog | head -n1 | cut -d ' ' -f2 | tr -d '()')
