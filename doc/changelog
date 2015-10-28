@@ -3,8 +3,9 @@ fbcat (0.4.2) UNRELEASED; urgency=low
   * Add concrete dates to the manual pages. This helps making the package
     builds reproducible, and avoids goofy month/day/year format that DocBook
     XSL uses by default.
+  * Enable LFS build flags.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Sat, 27 Jun 2015 21:52:30 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Wed, 28 Oct 2015 11:33:46 +0100
 
 fbcat (0.4.1) unstable; urgency=low
 
