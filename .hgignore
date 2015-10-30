@@ -3,3 +3,4 @@ syntax: glob
 *.o
 doc/*.1
 fbcat
+secret/
