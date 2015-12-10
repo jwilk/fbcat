@@ -5,7 +5,7 @@ fbcat (0.4.2) UNRELEASED; urgency=low
     XSL uses by default.
   * Enable LFS build flags.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Wed, 28 Oct 2015 11:33:46 +0100
+ -- Jakub Wilk <jwilk@jwilk.net>  Thu, 10 Dec 2015 15:13:50 +0100
 
 fbcat (0.4.1) unstable; urgency=low
 
