@@ -1,3 +1,9 @@
+fbcat (0.4.3) UNRELEASED; urgency=low
+
+  * 
+
+ -- Jakub Wilk <jwilk@jwilk.net>  Wed, 02 Mar 2016 14:40:18 +0100
+
 fbcat (0.4.2) unstable; urgency=low
 
   * Add concrete dates to the manual pages. This helps making the package
