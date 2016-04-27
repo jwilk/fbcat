@@ -51,6 +51,13 @@ Framebuffer configurations tested with `fbcat`
 
 ------------------------
 
+:Name: cirrusdrmfb
+:Type: PACKED PIXELS
+:Visual: TRUECOLOR
+:RGBA: 8/16,8/8,8/0,0/0
+
+------------------------
+
 :Name: OFfb QEMU,VGA
 :Type: PACKED PIXELS
 :Visual: STATIC PSEUDOCOLOR
