@@ -26,7 +26,7 @@ fbcat (0.4) unstable; urgency=low
 
   [ David Lechner ]
   * Add support for monochrome visuals.
-    https://github.com/jwilk/fbcat/issue/2
+    https://github.com/jwilk/fbcat/issues/2
 
   [ Jakub Wilk ]
   * Improve error handling.
