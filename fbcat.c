@@ -37,7 +37,7 @@
 
 static const char default_fbdev[] = "/dev/fb0";
 
-static const char bug_tracker_url[] = "https://bitbucket.org/jwilk/fbcat/issues";
+static const char bug_tracker_url[] = "https://github.com/jwilk/fbcat/issues";
 
 static void posix_error(const char *s, ...)
 {

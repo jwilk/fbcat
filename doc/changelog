@@ -1,8 +1,9 @@
 fbcat (0.4.3) UNRELEASED; urgency=low
 
-  * 
+  * Update the bug tracker URLs.
+    The project repo has moved to GitHub.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Wed, 02 Mar 2016 14:40:18 +0100
+ -- Jakub Wilk <jwilk@jwilk.net>  Fri, 10 Jun 2016 23:10:45 +0200
 
 fbcat (0.4.2) unstable; urgency=low
 
@@ -25,7 +26,7 @@ fbcat (0.4) unstable; urgency=low
 
   [ David Lechner ]
   * Add support for monochrome visuals.
-    https://bitbucket.org/jwilk/fbcat/issue/2
+    https://github.com/jwilk/fbcat/issue/2
 
   [ Jakub Wilk ]
   * Improve error handling.
