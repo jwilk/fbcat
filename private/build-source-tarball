@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Copyright © 2009-2015 Jakub Wilk
+# Copyright © 2009-2016 Jakub Wilk
 #
 # This package is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -8,30 +8,31 @@
 
 if [ $# -ge 2 ]
 then
-    printf '%s [revision]\n' "$0" >&2
+    printf '%s [commit]\n' "$0" >&2
     exit 1
 fi
-if ! [ -d .hg ]
+if ! [ -d .git ]
 then
-    printf '%s requires hg checkout\n' "$0" >&2
+    printf '%s requires git checkout\n' "$0" >&2
     exit 1
 fi
 set -e
 pwd="$PWD"
-revision=${1:-.}
-name=$(hg cat -r "$revision" doc/changelog | head -n1 | cut -d ' ' -f 1)
-date=$(hg log -r "$revision" --template='{date|isodate}' | head -c 10 | tr -d -)
-version=$(hg cat -r "$revision" doc/changelog | head -n1 | cut -d ' ' -f2 | tr -d '()')
-released=$(hg cat -r "$revision" doc/changelog | head -n1 | grep -v -w UNRELEASED || true)
+commit=${1:-HEAD}
+commit=$(git describe "$commit")
+name=$(git cat-file blob "$commit:doc/changelog" | head -n1 | cut -d ' ' -f 1)
+date=$(git log -1 --pretty='format:%cI' "$commit" | head -c 10 | tr -d -)
+version=$(git cat-file blob "$commit:doc/changelog" | head -n1 | cut -d ' ' -f2 | tr -d '()')
+released=$(git cat-file blob "$commit:doc/changelog" | head -n1 | grep -v -w UNRELEASED || true)
 [ -n "$released" ] || version="${version}rc${date}"
-printf 'Revision: %s\nVersion: %s\n' "$revision" "$version" >&2
+printf 'Commit: %s\nVersion: %s\n' "$commit" "$version" >&2
 set -x
 sourceroot=$(mktemp -d -t "$name-source-XXXXXX")
 export TAR_OPTIONS='--owner root --group root --mode a+rX --format ustar'
 export GZIP='-9 -n'
-hg archive -r "$revision" "$sourceroot/$name-$version"
+git archive "$commit" --prefix="$name-$version/" | tar -C "$sourceroot" -xf -
 cd "$sourceroot"/*
-rm .hg*
+rm .git*
 rm .travis.yml
 rm private/build-source-tarball
 cd ..
