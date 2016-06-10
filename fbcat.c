@@ -1,5 +1,5 @@
 /* Copyright © 2009 Piotr Lewandowski
- * Copyright © 2009-2014 Jakub Wilk
+ * Copyright © 2009-2016 Jakub Wilk
  * Copyright © 2013 David Lechner
  *
  * This package is free software; you can redistribute it and/or modify
