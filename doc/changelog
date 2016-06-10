@@ -1,9 +1,9 @@
-fbcat (0.4.3) UNRELEASED; urgency=low
+fbcat (0.4.3) unstable; urgency=low
 
   * Update the bug tracker URLs.
     The project repo has moved to GitHub.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Fri, 10 Jun 2016 23:10:45 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Fri, 10 Jun 2016 23:20:32 +0200
 
 fbcat (0.4.2) unstable; urgency=low
 
