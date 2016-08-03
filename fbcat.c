@@ -8,6 +8,7 @@
  */
 
 #include <assert.h>
+#include <errno.h>
 #include <fcntl.h>
 #include <inttypes.h>
 #include <stdarg.h>
@@ -274,9 +275,30 @@ int main(int argc, const char **argv)
   if (var_info.bits_per_pixel != 1 && is_mono)
     not_supported("monochrome framebuffer is not 1 bpp");
   const size_t mapped_length = fix_info.line_length * (var_info.yres + var_info.yoffset);
+  bool mmapped_memory = false;
   unsigned char *video_memory = mmap(NULL, mapped_length, PROT_READ, MAP_SHARED, fd, 0);
-  if (video_memory == MAP_FAILED)
-    posix_error("mmap failed");
+  if (video_memory != MAP_FAILED)
+    mmapped_memory = true;
+  else
+  {
+    mmapped_memory = false;
+    const size_t buffer_size = fix_info.line_length * var_info.yres;
+    video_memory = malloc(buffer_size);
+    if (video_memory == NULL)
+      posix_error("malloc failed");
+    off_t offset = lseek(fd, fix_info.line_length * var_info.yoffset, SEEK_SET);
+    if (offset == (off_t) -1)
+      posix_error("lseek failed");
+    var_info.yoffset = 0;
+    ssize_t read_bytes = read(fd, video_memory, buffer_size);
+    if (read_bytes < 0)
+      posix_error("read failed");
+    else if ((size_t)read_bytes != buffer_size)
+    {
+      errno = EIO;
+      posix_error("read failed");
+    }
+  }
   if (is_mono)
     dump_video_memory_mono(video_memory, &var_info, black_is_zero, fix_info.line_length, stdout);
   else
@@ -286,7 +308,10 @@ int main(int argc, const char **argv)
     posix_error("write error");
 
   /* deliberately ignore errors */
-  munmap(video_memory, mapped_length);
+  if (mmapped_memory)
+    munmap(video_memory, mapped_length);
+  else
+    free(video_memory);
   close(fd);
   return 0;
 }
