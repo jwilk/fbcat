@@ -83,3 +83,10 @@ Framebuffer configurations tested with `fbcat`
 :Type: PACKED PIXELS
 :Visual: PSEUDOCOLOR
 :RGBA: 6/0,6/0,6/0,0/0
+
+------------------------
+
+:Name: virtiodrmfb
+:Type: PACKED PIXELS
+:Visual: TRUECOLOR
+:RGBA: 6/0,6/0,6/0,0/0
