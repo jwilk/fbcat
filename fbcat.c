@@ -272,7 +272,7 @@ int main(int argc, const char **argv)
   if (var_info.bits_per_pixel < 8 && !is_mono)
     not_supported("< 8 bpp");
   if (var_info.bits_per_pixel != 1 && is_mono)
-    not_supported("monochrome framebuffer is not 1 bbp");
+    not_supported("monochrome framebuffer is not 1 bpp");
   const size_t mapped_length = fix_info.line_length * (var_info.yres + var_info.yoffset);
   unsigned char *video_memory = mmap(NULL, mapped_length, PROT_READ, MAP_SHARED, fd, 0);
   if (video_memory == MAP_FAILED)
