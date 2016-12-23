@@ -1,3 +1,9 @@
+fbcat (0.4.5) UNRELEASED; urgency=low
+
+  * 
+
+ -- Jakub Wilk <jwilk@jwilk.net>  Fri, 23 Dec 2016 22:14:23 +0100
+
 fbcat (0.4.4) unstable; urgency=low
 
   * Fix support for framebuffer devices that are not mmap()-able.
