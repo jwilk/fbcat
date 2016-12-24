@@ -9,6 +9,6 @@ addons:
     - linux-libc-dev
 script:
 - make
-- xmllint --noout --valid doc/*.xml
+- make -C doc validate
 
 # vim:ts=2 sts=2 sw=2 et
