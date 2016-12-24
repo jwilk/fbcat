@@ -5,6 +5,8 @@ compiler:
 addons:
   apt:
     packages:
+    - docbook-xml
+    - docbook-xsl
     - libxml2-utils
     - linux-libc-dev
 script:
