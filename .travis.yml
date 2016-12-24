@@ -9,6 +9,6 @@ addons:
     - linux-libc-dev
 script:
 - make
-- make -C doc validate
+- make -C doc validate all
 
 # vim:ts=2 sts=2 sw=2 et
