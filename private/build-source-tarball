@@ -21,7 +21,7 @@ pwd="$PWD"
 commit=${1:-HEAD}
 commit=$(git describe "$commit")
 name=$(git cat-file blob "$commit:doc/changelog" | head -n1 | cut -d ' ' -f 1)
-date=$(git log -1 --pretty='format:%cI' "$commit" | head -c 10 | tr -d -)
+date=$(git rev-list -1 --format=%cI "$commit" | grep -o '^....-..-..' | tr -d -)
 version=$(git cat-file blob "$commit:doc/changelog" | head -n1 | cut -d ' ' -f2 | tr -d '()')
 released=$(git cat-file blob "$commit:doc/changelog" | head -n1 | grep -v -w UNRELEASED || true)
 [ -n "$released" ] || version="${version}rc${date}"
