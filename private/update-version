@@ -3,4 +3,4 @@ version=${1:?"no version number provided"}
 set -e
 set -x
 dch -m -v "$version" -u low -c doc/changelog
-sed -i -r -e "s/<(!ENTITY version) '[0-9.]+'>/<\1 '$version'>/" doc/*.xml
+sed -i -E -e "s/<(!ENTITY version) '[0-9.]+'>/<\1 '$version'>/" doc/*.xml
