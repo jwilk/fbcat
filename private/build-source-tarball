@@ -33,6 +33,7 @@ export GZIP='-9 -n'
 git archive "$commit" --prefix="$name-$version/" | tar -C "$sourceroot" -xf -
 cd "$sourceroot"/*
 rm .git*
+rm .mailmap
 rm .travis.yml
 rm private/build-source-tarball
 mv COPYING doc/
