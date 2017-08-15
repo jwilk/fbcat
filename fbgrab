@@ -11,7 +11,7 @@ set -e
 usage()
 {
   cat <<EOF
-Usage: $0 [option...] <filename.png>
+Usage: $0 [option...] <filename.png|->
 
 Options:
 -c <N>      grab from /dev/ttyN
@@ -20,6 +20,8 @@ Options:
 -i          turn on PNG interlacing
 -s <N>      sleep <N> seconds before making screenshot
 -?          display this help and exit
+
+If the specified destination is "-", the PNG output is piped to stdout.
 EOF
   exit 1
 }
@@ -74,7 +76,12 @@ if command -v pnmtopng >/dev/null 2>/dev/null
 then
   ppm2png()
   {
-    pnmtopng ${interlace:+-interlace} - > "$1"
+    if [ "$1" = "-" ]
+    then
+      pnmtopng ${interlace:+-interlace} -
+    else
+      pnmtopng ${interlace:+-interlace} - > "$1"
+    fi
   }
 elif gm -version 2>/dev/null | grep -q -w GraphicsMagick
 then
