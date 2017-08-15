@@ -76,19 +76,24 @@ if command -v pnmtopng >/dev/null 2>/dev/null
 then
   ppm2png()
   {
-    pnmtopng ${interlace:+-interlace} -
+    if [ "$1" = "-" ]
+    then
+      pnmtopng ${interlace:+-interlace} -
+    else
+      pnmtopng ${interlace:+-interlace} - > "$1"
+    fi
   }
 elif gm -version 2>/dev/null | grep -q -w GraphicsMagick
 then
   ppm2png()
   {
-    gm convert ${interlace:+-interlace Line} PPM:-
+    gm convert ${interlace:+-interlace Line} PPM:- "PNG:$1"
   }
 elif convert -version 2>/dev/null | grep -q -w ImageMagick
 then
   ppm2png()
   {
-    convert ${interlace:+-interlace Line} PPM:-
+    convert ${interlace:+-interlace Line} PPM:- "PNG:$1"
   }
 else
   no_ppm2png
@@ -101,14 +106,7 @@ then
   chvt "$grab_vt"
 fi
 sleep "$wait_after_switch"
-
-if [ "$1" = "-" ]
-then
-  fbcat "$device" | ppm2png
-else
-  fbcat "$device" | ppm2png > "$1"
-fi
-
+fbcat "$device" | ppm2png "$1"
 if [ -n "$current_vt" ]
 then
   chvt "$current_vt"
