@@ -10,7 +10,7 @@
 <refentryinfo>
 	<title>&p; manual</title>
 	<productname>&p;</productname>
-	<date>2015-06-27</date>
+	<date>2017-08-16</date>
 	<!-- copyright information for THIS document: -->
 	<copyright>
 		<year>2009</year>
@@ -21,6 +21,10 @@
 		<year>2011</year>
 		<year>2013</year>
 		<holder>Jakub Wilk</holder>
+	</copyright>
+	<copyright>
+		<year>2017</year>
+		<holder>David Lechner</holder>
 	</copyright>
 </refentryinfo>
 
@@ -124,6 +128,9 @@
 				</listitem>
 			</varlistentry>
 		</variablelist>
+	</para>
+	<para>
+		Specify 'png-file' as '-' to write to standard output.
 	</para>
 </refsection>
 
