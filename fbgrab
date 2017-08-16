@@ -76,12 +76,8 @@ if command -v pnmtopng >/dev/null 2>/dev/null
 then
   ppm2png()
   {
-    if [ "$1" = "-" ]
-    then
-      pnmtopng ${interlace:+-interlace} -
-    else
-      pnmtopng ${interlace:+-interlace} - > "$1"
-    fi
+    [ "$1" = "-" ] || exec > "$1"
+    pnmtopng ${interlace:+-interlace} -
   }
 elif gm -version 2>/dev/null | grep -q -w GraphicsMagick
 then
