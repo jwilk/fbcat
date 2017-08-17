@@ -130,7 +130,7 @@
 		</variablelist>
 	</para>
 	<para>
-		Specify 'png-file' as '-' to write to standard output.
+		Specify <replaceable>png-file</replaceable> as <quote><literal>-</literal></quote> to write to standard output.
 	</para>
 </refsection>
 
