@@ -2,6 +2,7 @@ CFLAGS ?= -g -O2
 CFLAGS += -Wall -Wextra
 CFLAGS += $(shell getconf LFS_CFLAGS)
 LDFLAGS += $(shell getconf LFS_LDFLAGS)
+LDLIBS += $(shell getconf LFS_LIBS)
 
 c_files = $(wildcard *.c)
 o_files = $(c_files:.c=.o)
