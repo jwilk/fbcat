@@ -1,3 +1,9 @@
+fbcat (0.5.1) UNRELEASED; urgency=low
+
+  * Use LFS_LIBS in addition to LFS_CFLAGS and LFS_LDFLAGS.
+
+ -- Jakub Wilk <jwilk@jwilk.net>  Fri, 15 Sep 2017 23:08:37 +0200
+
 fbcat (0.5) unstable; urgency=low
 
   [ Kaelin Laundry ]
