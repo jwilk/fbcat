@@ -1,8 +1,8 @@
 fbcat (0.5.1) UNRELEASED; urgency=low
 
-  * Use LFS_LIBS in addition to LFS_CFLAGS and LFS_LDFLAGS.
+  * Don't use getconf(1) to acquire LFS build flags.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Fri, 15 Sep 2017 23:08:37 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Wed, 08 Nov 2017 18:14:07 +0100
 
 fbcat (0.5) unstable; urgency=low
 
