@@ -8,13 +8,10 @@ CFLAGS ?= -g -O2
 CFLAGS += -Wall -Wextra
 CFLAGS += -D_FILE_OFFSET_BITS=64
 
-c_files = $(wildcard *.c)
-o_files = $(c_files:.c=.o)
-
 .PHONY: all
 all: fbcat
 
-fbcat: $(o_files)
+fbcat: fbcat.o
 	$(LINK.c) $(^) $(LDLIBS) -o $(@)
 
 .PHONY: clean
