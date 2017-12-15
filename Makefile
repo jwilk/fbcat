@@ -8,11 +8,27 @@ CFLAGS ?= -g -O2
 CFLAGS += -Wall -Wextra
 CFLAGS += -D_FILE_OFFSET_BITS=64
 
+PREFIX = /usr/local
+DESTDIR =
+
 .PHONY: all
 all: fbcat
 
 fbcat: fbcat.o
 	$(LINK.c) $(^) $(LDLIBS) -o $(@)
+
+.PHONY: install
+install: fbcat
+	install -d $(DESTDIR)$(PREFIX)/bin
+	install -m755 fbcat $(DESTDIR)$(PREFIX)/bin/fbcat
+	install -m755 fbgrab $(DESTDIR)$(PREFIX)/bin/fbgrab
+ifeq "$(wildcard .git doc/fbcat.1 doc/fbgrab.1)" ".git"
+	# run "$(MAKE) -C doc" to build the manpages
+else
+	install -d $(DESTDIR)$(PREFIX)/share/man/man1
+	install -m644 doc/fbcat.1 $(DESTDIR)$(PREFIX)/share/man/man1/fbcat.1
+	install -m644 doc/fbgrab.1 $(DESTDIR)$(PREFIX)/share/man/man1/fbgrab.1
+endif
 
 .PHONY: clean
 clean:
