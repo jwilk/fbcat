@@ -9,6 +9,7 @@ o_files = $(c_files:.c=.o)
 all: fbcat
 
 fbcat: $(o_files)
+	$(LINK.c) $(^) $(LDLIBS) -o $(@)
 
 .PHONY: clean
 clean:
