@@ -37,6 +37,7 @@ rm .mailmap
 rm .travis.yml
 rm private/build-source-tarball
 mv COPYING doc/
+make -C doc/
 cd ..
 tar -czf "$pwd/$name-$version.tar.gz" */
 rm -r "$sourceroot"
