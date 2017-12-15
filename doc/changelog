@@ -1,8 +1,10 @@
 fbcat (0.5.1) UNRELEASED; urgency=low
 
+  * Add “install” target to the makefile.
+  * Ship pre-built manual pages in the source tarball.
   * Don't use getconf(1) to acquire LFS build flags.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Wed, 08 Nov 2017 18:14:07 +0100
+ -- Jakub Wilk <jwilk@jwilk.net>  Fri, 15 Dec 2017 21:03:28 +0100
 
 fbcat (0.5) unstable; urgency=low
 
