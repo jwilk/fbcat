@@ -1,4 +1,4 @@
-fbcat (0.5.1) UNRELEASED; urgency=low
+fbcat (0.5.1) unstable; urgency=low
 
   * Fix fbgrab's option parser, so that it handles “-?” correctly.
     https://github.com/jwilk/fbcat/issues/15
@@ -6,7 +6,7 @@ fbcat (0.5.1) UNRELEASED; urgency=low
   * Ship pre-built manual pages in the source tarball.
   * Don't use getconf(1) to acquire LFS build flags.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Sat, 16 Dec 2017 13:56:44 +0100
+ -- Jakub Wilk <jwilk@jwilk.net>  Sat, 16 Dec 2017 17:47:14 +0100
 
 fbcat (0.5) unstable; urgency=low
 
