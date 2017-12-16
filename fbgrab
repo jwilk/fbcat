@@ -39,37 +39,29 @@ no_ppm2png()
   exit 4
 }
 
-internal_error()
-{
-  printf -- 'Internal error!\n' >&2
-  exit 42
-}
-
 current_vt=''
 grab_vt=''
 wait_after_switch=0
 wait_before_switch=0
 device=${FRAMEBUFFER:-/dev/fb0}
-opts=$(getopt -n fbgrab -o 'b:c:C:d:f:h:is:w:?' -- "$@")
 interlace=''
-eval set -- "$opts"
-while true
+while getopts 'b:c:C:d:f:h:is:w:?' arg
 do
-  case "$1" in
-    -b) not_supported_option "$1"; shift 2;;
-    -c) grab_vt="$2"; wait_after_switch=0; shift 2;;
-    -C) grab_vt="$2"; wait_after_switch=3; shift 2;;
-    -d) device="$2"; shift 2;;
-    -f) not_supported_option "$1"; shift 2;;
-    -h) not_supported_option "$1"; shift 2;;
-    -i) interlace=1; shift;;
-    -s) wait_before_switch="$(($2))"; shift 2;;
-    -w) not_supported_option "$1"; shift 2;;
-    -[?]) usage;;
-    --) shift; break;;
-    *) internal_error;
+  case "$arg" in
+    b) not_supported_option -b;;
+    c) grab_vt="$OPTARG"; wait_after_switch=0;;
+    C) grab_vt="$OPTARG"; wait_after_switch=3;;
+    d) device="$OPTARG";;
+    f) not_supported_option -f;;
+    h) not_supported_option -h;;
+    i) interlace=1;;
+    s) wait_before_switch="$((OPTARG))";;
+    w) not_supported_option "$OPTARG";;
+    [?]) usage;;
   esac
 done
+
+shift $(($OPTIND - 1))
 
 [ $# -ne 1 ] && usage
 
