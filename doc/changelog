@@ -1,10 +1,12 @@
 fbcat (0.5.1) UNRELEASED; urgency=low
 
+  * Fix fbgrab's option parser, so that it handles “-?” correctly.
+    https://github.com/jwilk/fbcat/issues/15
   * Add “install” target to the makefile.
   * Ship pre-built manual pages in the source tarball.
   * Don't use getconf(1) to acquire LFS build flags.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Fri, 15 Dec 2017 21:03:28 +0100
+ -- Jakub Wilk <jwilk@jwilk.net>  Sat, 16 Dec 2017 13:56:44 +0100
 
 fbcat (0.5) unstable; urgency=low
 
