@@ -16,6 +16,7 @@ script:
 - make
 - make -C doc validate all
 - make install PREFIX=$HOME/.local
+- cd /
 - fbcat || [ $? -eq 1 ]
 - fbgrab || [ $? -eq 1 ]
 - export MANPATH=~/.local/share/man MANWIDTH=80
