@@ -246,11 +246,11 @@ int main(int argc, const char **argv)
       /* initialize dummy colormap */
       unsigned int i;
       for (i = 0; i < (1U << var_info.red.length); i++)
-        colormap.red[i] = i * 0xffff / ((1 << var_info.red.length) - 1);
+        colormap.red[i] = i * 0xFFFF / ((1 << var_info.red.length) - 1);
       for (i = 0; i < (1U << var_info.green.length); i++)
-        colormap.green[i] = i * 0xffff / ((1 << var_info.green.length) - 1);
+        colormap.green[i] = i * 0xFFFF / ((1 << var_info.green.length) - 1);
       for (i = 0; i < (1U << var_info.blue.length); i++)
-        colormap.blue[i] = i * 0xffff / ((1 << var_info.blue.length) - 1);
+        colormap.blue[i] = i * 0xFFFF / ((1 << var_info.blue.length) - 1);
       break;
     }
     case FB_VISUAL_DIRECTCOLOR:
