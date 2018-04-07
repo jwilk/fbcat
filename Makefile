@@ -22,7 +22,7 @@ install: fbcat
 	install -d $(DESTDIR)$(PREFIX)/bin
 	install -m755 fbcat $(DESTDIR)$(PREFIX)/bin/fbcat
 	install -m755 fbgrab $(DESTDIR)$(PREFIX)/bin/fbgrab
-ifeq "$(wildcard .git doc/fbcat.1 doc/fbgrab.1)" ".git"
+ifeq "$(wildcard doc/fbcat.1 doc/fbgrab.1)" ""
 	# run "$(MAKE) -C doc" to build the manpages
 else
 	install -d $(DESTDIR)$(PREFIX)/share/man/man1
