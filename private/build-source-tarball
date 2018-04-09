@@ -28,7 +28,7 @@ released=$(git cat-file blob "$commit:doc/changelog" | head -n1 | grep -v -w UNR
 printf 'Commit: %s\nVersion: %s\n' "$commit" "$version" >&2
 set -x
 sourceroot=$(mktemp -d -t "$name-source-XXXXXX")
-export TAR_OPTIONS='--owner root --group root --mode a+rX --format ustar'
+export TAR_OPTIONS='--owner root --group root --mode a+rX --format ustar --sort name'
 export GZIP='-9 -n'
 git archive "$commit" --prefix="$name-$version/" | tar -C "$sourceroot" -xf -
 cd "$sourceroot"/*
