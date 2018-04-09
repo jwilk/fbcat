@@ -7,12 +7,14 @@ compiler:
 addons:
   apt:
     packages:
+    - cppcheck
     - docbook-xml
     - docbook-xsl
     - libxml2-utils
     - linux-libc-dev
     - xsltproc
 script:
+- cppcheck --error-exitcode=1 *.c
 - make
 - make -C doc validate all
 - make install PREFIX=$HOME/.local
