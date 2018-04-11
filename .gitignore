@@ -1,3 +1,4 @@
 *.o
+/dist
 /doc/*.1
 /fbcat
