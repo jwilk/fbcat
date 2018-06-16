@@ -14,6 +14,7 @@ addons:
     - linux-libc-dev
     - xsltproc
 script:
+- dpkg-parsechangelog -ldoc/changelog --all 2>&1 >/dev/null | { ! grep .; }
 - cppcheck --error-exitcode=1 *.c
 - make
 - make -C doc validate all
