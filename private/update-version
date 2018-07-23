@@ -1,6 +1,6 @@
 #!/bin/sh
-version=${1:?"no version number provided"}
+export version=${1:?"no version number provided"}
 set -e
 set -x
 dch -m -v "$version" -u low -c doc/changelog
-sed -i -E -e "s/<(!ENTITY version) '[0-9.]+'>/<\1 '$version'>/" doc/*.xml
+perl -pi -e "s/<(!ENTITY version) '[0-9.]+'>/<\1 '\$ENV{version}'>/" doc/*.xml
