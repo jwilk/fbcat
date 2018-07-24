@@ -3,4 +3,4 @@ export version=${1:?"no version number provided"}
 set -e
 set -x
 dch -m -v "$version" -u low -c doc/changelog
-perl -pi -e "s/<(!ENTITY version) '[0-9.]+'>/<\1 '\$ENV{version}'>/" doc/*.xml
+perl -pi -e 's/<!ENTITY version \047\K[0-9.]+/$ENV{version}/' doc/*.xml
