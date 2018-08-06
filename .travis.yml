@@ -17,7 +17,7 @@ script:
 - dpkg-parsechangelog -ldoc/changelog --all 2>&1 >/dev/null | { ! grep .; }
 - cppcheck --error-exitcode=1 *.c
 - make
-- make -C doc validate all
+- make -C doc check all
 - make install PREFIX=$HOME/.local
 - cd /
 - fbcat || [ $? -eq 1 ]

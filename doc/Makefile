@@ -12,8 +12,11 @@ all: $(man_files)
 %.1: %.xml
 	$(xsltproc) $(xsl) $(<)
 
-.PHONY: validate
-validate: $(xml_files)
+.PHONY: check
+check: check-xml
+
+.PHONY: check-xml
+check-xml: $(xml_files)
 	xmllint --nonet --noout --valid $(^)
 
 .PHONY: clean
