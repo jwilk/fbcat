@@ -1,3 +1,4 @@
+rst2xml = $(notdir $(shell command -v rst2xml || echo rst2xml.py))
 xsl = http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl
 xsltproc = xsltproc --nonet \
 	--param man.charmap.use.subset 0 \
@@ -13,7 +14,11 @@ all: $(man_files)
 	$(xsltproc) $(xsl) $(<)
 
 .PHONY: check
-check: check-xml
+check: check-rst check-xml
+
+.PHONY: check-rst
+check-rst: tested.txt
+	$(rst2xml) --input-encoding=UTF-8 --strict $(<) > /dev/null
 
 .PHONY: check-xml
 check-xml: $(xml_files)
