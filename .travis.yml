@@ -13,6 +13,8 @@ addons:
     - libxml2-utils
     - linux-libc-dev
     - xsltproc
+install:
+- python -m pip install --user docutils
 script:
 - dpkg-parsechangelog -ldoc/changelog --all 2>&1 >/dev/null | { ! grep .; }
 - cppcheck --error-exitcode=1 *.c
