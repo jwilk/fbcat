@@ -14,7 +14,11 @@ all: $(man_files)
 	$(xsltproc) $(xsl) $(<)
 
 .PHONY: check
-check: check-rst check-xml
+check: check-changelog check-rst check-xml
+
+.PHONY: check-changelog
+check-changelog: changelog
+	dpkg-parsechangelog -l$(<) --all 2>&1 >/dev/null | { ! grep .; }
 
 .PHONY: check-rst
 check-rst: tested.txt
