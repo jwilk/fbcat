@@ -1,3 +1,9 @@
+# Copyright © 2009-2018 Jakub Wilk
+#
+# This package is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; version 2 dated June, 1991.
+
 rst2xml = $(notdir $(shell command -v rst2xml || echo rst2xml.py))
 xsl = http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl
 xsltproc = xsltproc --nonet \
