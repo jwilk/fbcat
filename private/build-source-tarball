@@ -29,8 +29,8 @@ released=$(git cat-file blob "$commit:doc/changelog" | head -n1 | grep -v -w UNR
 printf 'Commit: %s\nVersion: %s\n' "$commit" "$version" >&2
 set -x
 sourceroot=$(mktemp -d -t "$name-source-XXXXXX")
-export TAR_OPTIONS='--owner root --group root --mode a+rX --format ustar --sort name'
-export GZIP='-9 -n'
+tar_opts='--owner root --group root --mode a+rX --format ustar --sort name'
+gzip='gzip -9 -n'
 git archive "$commit" --prefix="$name-$version/" | tar -C "$sourceroot" -xf -
 cd "$sourceroot"/*
 rm .git*
@@ -41,7 +41,7 @@ mv COPYING doc/
 make -C doc/
 cd ..
 mkdir -p "$pwd/dist"
-tar -czf "$pwd/dist/$name-$version.tar.gz" */
+tar $tar_opts -I "$gzip" -cf "$pwd/dist/$name-$version.tar.gz" */
 rm -r "$sourceroot"
 set +x
 cd "$pwd"
