@@ -10,7 +10,7 @@
 <refentryinfo>
 	<title>&p; manual</title>
 	<productname>fbcat</productname>
-	<date>2015-06-27</date>
+	<date>2018-08-09</date>
 	<!-- copyright information for THIS document: -->
 	<copyright>
 		<year>2009</year>
@@ -19,6 +19,7 @@
 	<copyright>
 		<year>2009</year>
 		<year>2013</year>
+		<year>2018</year>
 		<holder>Jakub Wilk</holder>
 	</copyright>
 </refentryinfo>
