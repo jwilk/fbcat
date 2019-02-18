@@ -11,6 +11,9 @@ CFLAGS += -D_FILE_OFFSET_BITS=64
 PREFIX = /usr/local
 DESTDIR =
 
+bindir = $(PREFIX)/bin
+mandir = $(PREFIX)/share/man
+
 .PHONY: all
 all: fbcat
 
@@ -19,15 +22,15 @@ fbcat: fbcat.o
 
 .PHONY: install
 install: fbcat
-	install -d $(DESTDIR)$(PREFIX)/bin
-	install -m755 fbcat $(DESTDIR)$(PREFIX)/bin/fbcat
-	install -m755 fbgrab $(DESTDIR)$(PREFIX)/bin/fbgrab
+	install -d $(DESTDIR)$(bindir)
+	install -m755 fbcat $(DESTDIR)$(bindir)/
+	install -m755 fbgrab $(DESTDIR)$(bindir)/
 ifeq "$(wildcard doc/fbcat.1 doc/fbgrab.1)" ""
 	# run "$(MAKE) -C doc" to build the manpages
 else
 	install -d $(DESTDIR)$(PREFIX)/share/man/man1
-	install -m644 doc/fbcat.1 $(DESTDIR)$(PREFIX)/share/man/man1/fbcat.1
-	install -m644 doc/fbgrab.1 $(DESTDIR)$(PREFIX)/share/man/man1/fbgrab.1
+	install -m644 doc/fbcat.1 $(DESTDIR)$(mandir)/man1/fbcat.1
+	install -m644 doc/fbgrab.1 $(DESTDIR)$(mandir)/man1/fbgrab.1
 endif
 
 .PHONY: clean
