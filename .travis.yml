@@ -16,6 +16,7 @@ install:
 - python -m pip install --user docutils
 script:
 - cppcheck --error-exitcode=1 *.c
+- shellcheck fbgrab
 - make
 - make -C doc check all
 - make install PREFIX=$HOME/.local
