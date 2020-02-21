@@ -5,13 +5,15 @@ Overview
 Two executables are provided:
 
 * Low-level ``fbcat`` that operates on the current virtual terminal and writes
-  the screenshot to stdout in the PPM format:
+  the screenshot to stdout in the PPM_ format:
 
   .. code:: console
 
      $ fbcat > screenshot.ppm
      $ file screenshot.ppm
      screenshot.ppm: Netpbm image data, size = 1280 x 1024, rawbits, pixmap
+
+.. _PPM: http://netpbm.sourceforge.net/doc/ppm.html
 
 * High-level ``fbgrab`` that supports the PNG format and virtual terminal
   switching:
@@ -54,12 +56,25 @@ The following software is needed to build ``fbcat``:
 Additionally, the following software is needed to rebuild the manual pages from
 source:
 
-- ``xsltproc`` (part of libxslt)
-- DocBook XSL stylesheets
+- ``xsltproc`` (part of libxslt_)
+- `DocBook XSL stylesheets`_
 
 ``fbgrab`` requires the following software:
 
-- ``chvt`` (part of KBD)
-- ``pnmtopng`` (part of Netpbm) or GraphicsMagick or ImageMagick
+- ``chvt`` (part of KBD_)
+- ``pnmtopng`` (part of Netpbm_) or GraphicsMagick_ or ImageMagick_
+
+.. _libxslt:
+   http://xmlsoft.org/xslt/
+.. _DocBook XSL stylesheets:
+   https://github.com/docbook/xslt10-stylesheets
+.. _KBD:
+   http://kbd-project.org/
+.. _Netpbm:
+   http://netpbm.sourceforge.net/
+.. _GraphicsMagick:
+   http://www.graphicsmagick.org/
+.. _ImageMagick:
+   https://imagemagick.org/
 
 .. vim:ft=rst ts=3 sts=3 sw=3 et
