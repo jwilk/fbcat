@@ -4,8 +4,7 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; version 2 dated June, 1991.
 
-rst2xml = $(notdir $(shell command -v rst2xml || echo rst2xml.py)) \
-	--input-encoding=UTF-8 --strict
+rst2xml = $(notdir $(shell command -v rst2xml || echo rst2xml.py))
 
 xsl = http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl
 xsltproc = xsltproc --nonet \
@@ -30,7 +29,7 @@ check-changelog: changelog
 
 .PHONY: check-rst
 check-rst: README tested.txt
-	ls $(^) | xargs -t -I{} $(rst2xml) {} > /dev/null
+	ls $(^) | xargs -t -I{} $(rst2xml) --input-encoding=UTF-8 --strict {} > /dev/null
 
 .PHONY: check-xml
 check-xml: $(xml_files)
