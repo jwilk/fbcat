@@ -12,7 +12,7 @@ set -e
 usage()
 {
   cat <<EOF
-Usage: $0 [option...] <filename.png|->
+Usage: ${0##*/} [option...] <filename.png|->
 
 Options:
 -c <N>      grab from /dev/ttyN
