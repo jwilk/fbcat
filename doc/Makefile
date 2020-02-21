@@ -29,8 +29,8 @@ check-changelog: changelog
 	dpkg-parsechangelog -l$(<) --all 2>&1 >/dev/null | { ! grep .; }
 
 .PHONY: check-rst
-check-rst: tested.txt
-	$(rst2xml) $(<) > /dev/null
+check-rst: README tested.txt
+	ls $(^) | xargs -t -I{} $(rst2xml) {} > /dev/null
 
 .PHONY: check-xml
 check-xml: $(xml_files)
