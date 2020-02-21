@@ -37,6 +37,7 @@ rm -r .git*
 rm .mailmap
 rm .travis.yml
 rm private/build-source-tarball
+rm README.rst  # shipped as doc/README
 mv COPYING doc/
 make -C doc/
 cd ..

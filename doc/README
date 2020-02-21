@@ -1,0 +1,44 @@
+Overview
+========
+
+**fbcat** takes a screenshot using the Linux framebuffer device.
+Two executables are provided:
+
+* Low-level ``fbcat`` that operates on the current virtual terminal and writes
+  the screenshot to stdout in the PPM format.
+
+* High-level ``fbgrab`` that supports the PNG format and virtual terminal
+  switching.
+
+See the manual pages for details.
+
+The following visuals are supported:
+
+- ``TRUECOLOR``
+- ``DIRECTCOLOR``
+- ``PSEUDOCOLOR``
+- ``STATIC_PSEUDOCOLOR``
+- ``MONO01``
+- ``MONO10``
+
+Prerequisites
+=============
+
+The following software is needed to build ``fbcat``:
+
+- C compiler
+- Linux kernel userspace headers
+- GNU make
+
+Additionally, the following software is needed to rebuild the manual pages from
+source:
+
+- ``xsltproc`` (part of libxslt)
+- DocBook XSL stylesheets
+
+``fbgrab`` requires the following software:
+
+- ``chvt`` (part of KBD)
+- ``pnmtopng`` (part of Netpbm) or GraphicsMagick or ImageMagick
+
+.. vim:ft=rst ts=3 sts=3 sw=3 et
