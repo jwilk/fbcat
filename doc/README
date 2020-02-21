@@ -5,10 +5,31 @@ Overview
 Two executables are provided:
 
 * Low-level ``fbcat`` that operates on the current virtual terminal and writes
-  the screenshot to stdout in the PPM format.
+  the screenshot to stdout in the PPM format:
+
+  .. code:: console
+
+     $ fbcat > screenshot.ppm
+     $ file screenshot.ppm
+     screenshot.ppm: Netpbm image data, size = 1280 x 1024, rawbits, pixmap
 
 * High-level ``fbgrab`` that supports the PNG format and virtual terminal
-  switching.
+  switching:
+
+  .. code:: console
+
+     $ fbgrab '-?'
+     Usage: fbgrab [option...] <filename.png|->
+
+     Options:
+     -c <N>      grab from /dev/ttyN
+     -C <N>      grab from /dev/ttyN, for slower devices
+     -d <dev>    use framebuffer device <dev>
+     -i          turn on PNG interlacing
+     -s <N>      sleep <N> seconds before making screenshot
+     -?          display this help and exit
+
+     If the specified destination is "-", the PNG output is piped to stdout.
 
 See the manual pages for details.
 
