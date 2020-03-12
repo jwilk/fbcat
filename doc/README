@@ -77,4 +77,17 @@ source:
 .. _ImageMagick:
    https://imagemagick.org/
 
+Installation
+============
+
+To install system-wide::
+
+   $ make
+   $ sudo make install
+
+The default installation prefix is ``/usr/local``.
+You can specify different one using the ``PREFIX`` variable, e.g.::
+
+   $ make install PREFIX="$HOME/.local"
+
 .. vim:ft=rst ts=3 sts=3 sw=3 et
