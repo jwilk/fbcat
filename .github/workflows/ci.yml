@@ -1,0 +1,48 @@
+name: CI
+on:
+- push
+- pull_request
+jobs:
+  main:
+    strategy:
+      matrix:
+        os:
+        - ubuntu-18.04
+        - ubuntu-latest
+        cc:
+        - gcc
+        - clang
+    runs-on: ${{matrix.os}}
+    steps:
+    - uses: actions/checkout@v2
+    - run: |
+        sudo apt-get install cppcheck docbook-xml docbook-xsl libxml2-utils linux-libc-dev xsltproc
+    - run: |
+        python -m pip install --user docutils
+    - run: |
+        cppcheck --error-exitcode=1 *.c
+    - run: |
+        shellcheck fbgrab
+    - name: check C compiler version
+      run: ${{matrix.cc}} --version
+    - run: |
+        make CC=${{matrix.cc}}
+    - run: |
+        make -C doc check all
+    - run: |
+        make install PREFIX=~/.local
+    - name: check whether binaries were installed correctly
+      run: |
+        cd /
+        set +e
+        fbcat - -; [ $? -eq 1 ] || exit 1
+        fbgrab; [ $? -eq 1 ] || exit 1
+    - name: check whether man pages were installed correctly
+      env:
+        MANPATH: /home/runner/.local/share/man
+        MANWIDTH: 80
+      run: |
+        man 1 fbcat | grep -C 999 -w FBCAT
+        man 1 fbgrab | grep -C 999 -w FBGRAB
+
+# vim:ts=2 sts=2 sw=2 et
