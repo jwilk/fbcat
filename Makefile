@@ -28,7 +28,7 @@ install: fbcat
 ifeq "$(wildcard doc/fbcat.1 doc/fbgrab.1)" ""
 	# run "$(MAKE) -C doc" to build the manpages
 else
-	install -d $(DESTDIR)$(PREFIX)/share/man/man1
+	install -d $(DESTDIR)$(mandir)/man1
 	install -m644 doc/fbcat.1 $(DESTDIR)$(mandir)/man1/fbcat.1
 	install -m644 doc/fbgrab.1 $(DESTDIR)$(mandir)/man1/fbgrab.1
 endif
