@@ -1,8 +1,11 @@
 fbcat (0.5.2) UNRELEASED; urgency=low
 
-  * 
+  * Add README.
+    https://github.com/jwilk/fbcat/issues/16
+  * fbgrab: don't print full path in the help message.
+  * Makefile: use bindir and mandir variables.
 
- -- Jakub Wilk <jwilk@jwilk.net>  Mon, 23 Jul 2018 22:39:03 +0200
+ -- Jakub Wilk <jwilk@jwilk.net>  Mon, 30 Aug 2021 16:36:57 +0200
 
 fbcat (0.5.1) unstable; urgency=low
 
