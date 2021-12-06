@@ -15,22 +15,29 @@ jobs:
     runs-on: ${{matrix.os}}
     steps:
     - uses: actions/checkout@v2
-    - run:
+    - name: APT install deps
+      run:
         sudo apt-get install cppcheck docbook-xml docbook-xsl libxml2-utils linux-libc-dev xsltproc
-    - run:
+    - name: install docutils
+      run:
         pip install docutils
-    - run:
+    - name: run cppcheck
+      run:
         cppcheck --error-exitcode=1 *.c
-    - run:
+    - name: run shellcheck
+      run:
         shellcheck fbgrab
     - name: check C compiler version
       run:
         ${{matrix.cc}} --version
-    - run:
+    - name: build the program
+      run:
         make CC=${{matrix.cc}}
-    - run:
+    - name: build the docs
+      run:
         make -C doc check all
-    - run:
+    - name: install
+      run:
         make install PREFIX=~/.local
     - name: check whether binaries were installed correctly
       run: |
