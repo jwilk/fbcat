@@ -15,6 +15,10 @@ jobs:
     runs-on: ${{matrix.os}}
     steps:
     - uses: actions/checkout@v2
+    - name: set up APT
+      run: |
+        printf 'Apt::Install-Recommends "false";\n' | sudo tee -a /etc/apt/apt.conf
+        sudo apt-get update
     - name: APT install deps
       run:
         sudo apt-get install cppcheck docbook-xml docbook-xsl libxml2-utils linux-libc-dev xsltproc
