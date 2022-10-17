@@ -13,7 +13,7 @@ Two executables are provided:
      $ file screenshot.ppm
      screenshot.ppm: Netpbm image data, size = 1280 x 1024, rawbits, pixmap
 
-.. _PPM: http://netpbm.sourceforge.net/doc/ppm.html
+.. _PPM: https://netpbm.sourceforge.net/doc/ppm.html
 
 * High-level ``fbgrab`` that supports the PNG format and virtual terminal
   switching:
@@ -71,7 +71,7 @@ source:
 .. _KBD:
    http://kbd-project.org/
 .. _Netpbm:
-   http://netpbm.sourceforge.net/
+   https://netpbm.sourceforge.net/
 .. _GraphicsMagick:
    http://www.graphicsmagick.org/
 .. _ImageMagick:
