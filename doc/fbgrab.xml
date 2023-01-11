@@ -125,7 +125,7 @@
 				<term><option>-?</option></term>
 				<listitem>
 					<para>
-						Display help and exit.
+						Show the help message and exit.
 					</para>
 				</listitem>
 			</varlistentry>

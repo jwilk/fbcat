@@ -20,7 +20,7 @@ Options:
 -d <dev>    use framebuffer device <dev>
 -i          turn on PNG interlacing
 -s <N>      sleep <N> seconds before making screenshot
--?          display this help and exit
+-?          show this help message and exit
 
 If the specified destination is "-", the PNG output is piped to stdout.
 EOF
