@@ -1,3 +1,9 @@
+fbcat (0.5.3) UNRELEASED; urgency=low
+
+  * 
+
+ -- Jakub Wilk <jwilk@jwilk.net>  Sat, 11 Feb 2023 17:26:21 +0100
+
 fbcat (0.5.2) unstable; urgency=low
 
   * Add README.
