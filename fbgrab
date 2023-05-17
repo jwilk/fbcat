@@ -13,7 +13,9 @@ usage()
 {
   cat <<EOF
 Usage: ${0##*/} [option...] <filename.png|->
-
+EOF
+[ "${1-}" = short ] && return
+cat <<EOF
 Options:
 -c <N>      grab from /dev/ttyN
 -C <N>      grab from /dev/ttyN, for slower devices
@@ -24,7 +26,6 @@ Options:
 
 If the specified destination is "-", the PNG output is piped to stdout.
 EOF
-  exit 1
 }
 
 not_supported_option()
@@ -57,13 +58,25 @@ do
     i) interlace=1;;
     s) wait_before_switch="$((OPTARG))";;
     w) not_supported_option "$OPTARG";;
-    [?]) usage;;
+    [?])
+      if [ -n "${OPTARG+x}" ]
+      then
+        usage
+        exit 0
+      else
+        usage short >&2
+        exit 1
+      fi
   esac
 done
 
 shift $((OPTIND - 1))
 
-[ $# -ne 1 ] && usage
+if [ $# -ne 1 ]
+then
+  usage short >&2
+  exit 1
+fi
 
 if command -v pnmtopng >/dev/null 2>/dev/null
 then
