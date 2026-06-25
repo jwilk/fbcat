@@ -8,6 +8,7 @@
  */
 
 #include <assert.h>
+#include <endian.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <inttypes.h>
@@ -22,19 +23,6 @@
 #include <unistd.h>
 
 #include <linux/fb.h>
-
-#if !defined(le32toh) || !defined(le16toh)
-
-#if BYTE_ORDER == LITTLE_ENDIAN
-#define le32toh(x) (x)
-#define le16toh(x) (x)
-#else
-#include <byteswap.h>
-#define le32toh(x) bswap_32(x)
-#define le16toh(x) bswap_16(x)
-#endif
-
-#endif
 
 static const char default_fbdev[] = "/dev/fb0";
 
